@@ -107,6 +107,7 @@
 				A74EEB6A1C806BCC001930C6 /* Assets.xcassets */,
 				A74EEB6C1C806BCC001930C6 /* LaunchScreen.storyboard */,
 				A74EEB6F1C806BCC001930C6 /* Info.plist */,
+				355B23280744B321DBEC23FA /* TodoListViewController.swift */,
 			);
 			path = MyTodo;
 			sourceTree = "<group>";
@@ -285,6 +286,7 @@
 				425E5CD51C902936008FE6C1 /* TodoListViewController.swift in Sources */,
 				A74EEB661C806BCC001930C6 /* ViewController.swift in Sources */,
 				A74EEB641C806BCC001930C6 /* AppDelegate.swift in Sources */,
+				355B2684225A1BDD3C3A702E /* TodoListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
