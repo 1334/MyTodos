@@ -28,14 +28,20 @@ class TodoListViewControllerTest: XCTestCase {
     }
     
     func testTableViewHasADelegate() {
+        withTableView() { tableView in assertThat(tableView.delegate, present()) }
+    }
+
+    typealias TableViewAssertClosure = (tableView: UITableView) -> Void
+    
+    func withTableView(asserts : TableViewAssertClosure) {
         let todoListViewController = getTodoListViewController()
         presentViewController(todoListViewController)
         
         if let tableView = todoListViewController.tableView {
-            assertThat(tableView.delegate, present())
+            asserts(tableView: tableView)
         }
     }
-
+    
     func testTableViewFillsSuperView() {
         let todoListViewController = getTodoListViewController()
         presentViewController(todoListViewController)
