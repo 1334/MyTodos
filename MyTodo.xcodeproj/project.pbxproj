@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		355B2684225A1BDD3C3A702E /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B23280744B321DBEC23FA /* TodoListViewController.swift */; };
 		A74EEB641C806BCC001930C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74EEB631C806BCC001930C6 /* AppDelegate.swift */; };
 		A74EEB661C806BCC001930C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74EEB651C806BCC001930C6 /* ViewController.swift */; };
 		A74EEB691C806BCC001930C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A74EEB671C806BCC001930C6 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		355B23280744B321DBEC23FA /* TodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		580267A776EA2E61D0640560 /* Pods-MyTodoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTodoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTodoTests/Pods-MyTodoTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B771897B68DB8B212B61736 /* Pods_MyTodoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTodoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5E87B9A0F35C23D9723769 /* Pods-MyTodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTodoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTodoTests/Pods-MyTodoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				A74EEB6A1C806BCC001930C6 /* Assets.xcassets */,
 				A74EEB6C1C806BCC001930C6 /* LaunchScreen.storyboard */,
 				A74EEB6F1C806BCC001930C6 /* Info.plist */,
+				355B23280744B321DBEC23FA /* TodoListViewController.swift */,
 			);
 			path = MyTodo;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			files = (
 				A74EEB661C806BCC001930C6 /* ViewController.swift in Sources */,
 				A74EEB641C806BCC001930C6 /* AppDelegate.swift in Sources */,
+				355B2684225A1BDD3C3A702E /* TodoListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
