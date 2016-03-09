@@ -1,0 +1,10 @@
+plugins {
+  id "org.openbakery.xcode-plugin" version "0.13.0"
+}
+
+xcodebuild {
+	scheme = "MyTodo"
+	target = "MyTodo"
+	
+	destination = ["iPhone 6"]
+}
