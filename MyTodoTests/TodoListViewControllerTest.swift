@@ -13,14 +13,13 @@ import Hamcrest
 class TodoListViewControllerTest: XCTestCase {
 
     func testHasATableView() {
-        let todoListViewController = getTodoListViewController()
-        presentViewController(todoListViewController)
+        let todoListViewController = presentTodoListViewController()
+
         assertThat(todoListViewController.tableView, present())
     }
     
     func testTableViewHasADataSource() {
-        let todoListViewController = getTodoListViewController()
-        presentViewController(todoListViewController)
+        let todoListViewController = presentTodoListViewController()
         
         if let tableView = todoListViewController.tableView {
             assertThat(tableView.dataSource, present())
@@ -31,11 +30,39 @@ class TodoListViewControllerTest: XCTestCase {
         withTableView() { tableView in assertThat(tableView.delegate, present()) }
     }
 
+    func testTableViewHasOneSection() {
+        let todoListViewController = presentTodoListViewController()
+        todoListViewController.todoItems = []
+        
+        for arrayLength in 0...3 {
+            assertThat(todoListViewController.tableView(todoListViewController.tableView!, numberOfRowsInSection: 0), equalTo(arrayLength))
+            todoListViewController.todoItems.append("foobar")
+        }
+    }
+    
+    func testTableViewShowsAllTodoItems() {
+        let todoListViewController = presentTodoListViewController()
+        todoListViewController.todoItems = [ "1", "2", "3" ]
+        
+        for (index, item) in todoListViewController.todoItems.enumerate() {
+            let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
+            assertThat(tableCell.textLabel, present())
+
+            assertThat(tableCell.textLabel?.text, presentAnd(equalTo(item)))
+        }
+
+    }
+    
+    func presentTodoListViewController() -> TodoListViewController {
+        let todoListViewController = getTodoListViewController()
+        presentViewController(todoListViewController)
+        return todoListViewController
+    }
+    
     typealias TableViewAssertClosure = (tableView: UITableView) -> Void
     
     func withTableView(asserts : TableViewAssertClosure) {
-        let todoListViewController = getTodoListViewController()
-        presentViewController(todoListViewController)
+        let todoListViewController = presentTodoListViewController()
         
         if let tableView = todoListViewController.tableView {
             asserts(tableView: tableView)
@@ -43,8 +70,7 @@ class TodoListViewControllerTest: XCTestCase {
     }
     
     func testTableViewFillsSuperView() {
-        let todoListViewController = getTodoListViewController()
-        presentViewController(todoListViewController)
+        let todoListViewController = presentTodoListViewController()
         
         if let tableView = todoListViewController.tableView {
             assertThat(tableView.frame.origin.x, equalTo(0))
@@ -55,8 +81,7 @@ class TodoListViewControllerTest: XCTestCase {
     }
     
     func testHasCorrectTitle() {
-        let todoListViewController = getTodoListViewController()
-        presentViewController(todoListViewController)
+        let todoListViewController = presentTodoListViewController()
         
         assertThat(todoListViewController.navigationItem.title, presentAnd(equalTo("My Todo List")))
     }
