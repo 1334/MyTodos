@@ -11,12 +11,29 @@ import Hamcrest
 @testable import MyTodo
 
 class TodoListViewControllerTest: XCTestCase {
-    /*
+
     func testHasATableView() {
         let todoListViewController = getTodoListViewController()
         presentViewController(todoListViewController)
-        //assertThat(todoListViewController.view, instanceOf(UIView))
         assertThat(todoListViewController.tableView, present())
+    }
+    
+    func testTableViewHasADataSource() {
+        let todoListViewController = getTodoListViewController()
+        presentViewController(todoListViewController)
+        
+        if let tableView = todoListViewController.tableView {
+            assertThat(tableView.dataSource, present())
+        }
+    }
+    
+    func testTableViewHasADelegate() {
+        let todoListViewController = getTodoListViewController()
+        presentViewController(todoListViewController)
+        
+        if let tableView = todoListViewController.tableView {
+            assertThat(tableView.delegate, present())
+        }
     }
     
     func getTodoListViewController() -> TodoListViewController {
@@ -30,5 +47,5 @@ class TodoListViewControllerTest: XCTestCase {
         XCTFail("Could not load TodoListViewController")
         return TodoListViewController()
     }
-    */
+
 }
