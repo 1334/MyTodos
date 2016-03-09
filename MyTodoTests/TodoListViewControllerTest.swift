@@ -36,19 +36,19 @@ class TodoListViewControllerTest: XCTestCase {
         
         for arrayLength in 0...3 {
             assertThat(todoListViewController.tableView(todoListViewController.tableView!, numberOfRowsInSection: 0), equalTo(arrayLength))
-            todoListViewController.todoItems.append("foobar")
+            todoListViewController.todoItems.append(TodoItem(title: "foobar"))
         }
     }
     
     func testTableViewShowsAllTodoItems() {
         let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItems = [ "1", "2", "3" ]
+        todoListViewController.todoItems = [ TodoItem(title: "1"), TodoItem(title: "2"), TodoItem(title: "3") ]
         
         for (index, item) in todoListViewController.todoItems.enumerate() {
             let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
             assertThat(tableCell.textLabel, present())
 
-            assertThat(tableCell.textLabel?.text, presentAnd(equalTo(item)))
+            assertThat(tableCell.textLabel?.text, presentAnd(equalTo(item.title)))
         }
 
     }
@@ -85,7 +85,25 @@ class TodoListViewControllerTest: XCTestCase {
         
         assertThat(todoListViewController.navigationItem.title, presentAnd(equalTo("My Todo List")))
     }
+
+    func testHasAddTodoButton() {
+        let todoListViewController = presentTodoListViewController()
+        
+        let rightItem = todoListViewController.navigationItem.rightBarButtonItem
+        assertThat(rightItem, present())
+        assertThat(rightItem?.valueForKey("systemItem") as? Int, presentAnd(equalTo(UIBarButtonSystemItem.Add.rawValue)))
+    }
     
+    func testWhenPressingAddButtonAddViewIsShown() {
+        let todoListViewController = presentTodoListViewController()
+        
+        let addButton = todoListViewController.navigationItem.rightBarButtonItem
+        assertThat(addButton, present())
+        assertThat(addButton?.action, present())
+        
+        UIApplication.sharedApplication().sendAction(addButton!.action, to: addButton?.target, from: addButton, forEvent: nil)
+    }
+
     func getTodoListViewController() -> TodoListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let initialViewController = storyboard.instantiateInitialViewController() as? UINavigationController {

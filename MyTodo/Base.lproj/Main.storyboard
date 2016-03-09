@@ -49,7 +49,9 @@
                             <constraint firstItem="mQc-WN-hEw" firstAttribute="top" secondItem="Vp7-dr-hqS" secondAttribute="bottom" id="xTd-p0-ikG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Todo List" id="eTl-Ry-R74"/>
+                    <navigationItem key="navigationItem" title="My Todo List" id="eTl-Ry-R74">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PXj-rU-Leq"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mQc-WN-hEw" id="XRZ-lY-EFM"/>
                     </connections>

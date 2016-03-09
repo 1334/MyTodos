@@ -11,7 +11,7 @@ import UIKit
 class TodoListViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var tableView:UITableView?
     let tableViewDelegate:UITableViewDelegate = MyTodoTableViewDelegate()
-    var todoItems : [String] = ["Buy Milk", "Buy Beer", "Drink Beer", "World Domination"]
+    var todoItems : [TodoItem] = [ TodoItem(title: "Buy Milk"), TodoItem(title: "Buy Beer"), TodoItem(title: "Drink Beer"), TodoItem(title: "World Domination")]
     let cellIdentifier = "todoListCellItem"
 
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let tableCell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-        tableCell.textLabel?.text = todoItems[indexPath.row]
+        tableCell.textLabel?.text = todoItems[indexPath.row].title
 
         return tableCell
     }
