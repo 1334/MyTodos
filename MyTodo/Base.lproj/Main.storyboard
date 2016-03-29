@@ -1,64 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CYY-VH-5Bq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RAp-fw-6GO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
-        <scene sceneID="K4P-a0-Pzm">
+        <scene sceneID="Vy7-hp-Feq">
             <objects>
-                <navigationController id="CYY-VH-5Bq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FuE-Os-1Mm">
+                <navigationController id="RAp-fw-6GO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TAh-yn-8Qi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="u4d-0i-f0a" kind="relationship" relationship="rootViewController" id="d4M-ww-qPc"/>
+                        <segue destination="lYt-Fc-1vh" kind="relationship" relationship="rootViewController" id="C0s-s2-YJa"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AEu-H7-j5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jtx-vl-tbk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49" y="966"/>
+            <point key="canvasLocation" x="261" y="745"/>
         </scene>
         <!--My Todo List-->
-        <scene sceneID="CMb-2Q-ztO">
+        <scene sceneID="9G4-nI-cDq">
             <objects>
-                <viewController id="u4d-0i-f0a" customClass="TodoListViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lYt-Fc-1vh" customClass="TodoListViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Vp7-dr-hqS"/>
-                        <viewControllerLayoutGuide type="bottom" id="x8f-AI-FaG"/>
+                        <viewControllerLayoutGuide type="top" id="ggm-ak-3pl"/>
+                        <viewControllerLayoutGuide type="bottom" id="yUh-Fu-WR0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cNb-ja-4VK">
+                    <view key="view" contentMode="scaleToFill" id="p64-CO-GGs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mQc-WN-hEw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-TV-uGC">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="u4d-0i-f0a" id="06d-Uw-tOw"/>
+                                    <outlet property="dataSource" destination="lYt-Fc-1vh" id="V5V-t4-h1d"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="mQc-WN-hEw" secondAttribute="trailing" id="1py-C8-b5Y"/>
-                            <constraint firstItem="mQc-WN-hEw" firstAttribute="top" secondItem="cNb-ja-4VK" secondAttribute="top" id="9xt-iP-Mbo"/>
-                            <constraint firstItem="mQc-WN-hEw" firstAttribute="leading" secondItem="cNb-ja-4VK" secondAttribute="leading" id="Bpc-gr-d8q"/>
-                            <constraint firstItem="x8f-AI-FaG" firstAttribute="top" secondItem="mQc-WN-hEw" secondAttribute="bottom" id="R6a-SD-jGj"/>
+                            <constraint firstItem="2NT-TV-uGC" firstAttribute="top" secondItem="p64-CO-GGs" secondAttribute="top" id="Xs8-DO-KhT"/>
+                            <constraint firstItem="yUh-Fu-WR0" firstAttribute="top" secondItem="2NT-TV-uGC" secondAttribute="bottom" id="bdY-46-peB"/>
+                            <constraint firstItem="2NT-TV-uGC" firstAttribute="leading" secondItem="p64-CO-GGs" secondAttribute="leading" id="gzT-9h-vkE"/>
+                            <constraint firstAttribute="trailing" secondItem="2NT-TV-uGC" secondAttribute="trailing" id="kCg-j6-VjJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Todo List" id="eTl-Ry-R74">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PXj-rU-Leq"/>
+                    <navigationItem key="navigationItem" title="My Todo List" id="NPv-TV-HjD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3Iw-Lb-8yD">
+                            <connections>
+                                <segue destination="NYD-3L-wtO" kind="show" id="vxu-hC-rKE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="mQc-WN-hEw" id="XRZ-lY-EFM"/>
+                        <outlet property="tableView" destination="2NT-TV-uGC" id="Vv1-Jf-PBY"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gId-zQ-xBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="26i-AF-Y61" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="699" y="966"/>
+            <point key="canvasLocation" x="925" y="745"/>
+        </scene>
+        <!--Add Todo Item View Controller-->
+        <scene sceneID="Rmq-BS-702">
+            <objects>
+                <viewController id="NYD-3L-wtO" customClass="AddTodoItemViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KL5-Un-Lyq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dt2-yp-sfD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oJ0-Ss-iQW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s1m-2p-S40" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1580" y="745"/>
         </scene>
     </scenes>
 </document>

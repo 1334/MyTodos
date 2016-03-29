@@ -19,7 +19,7 @@ class TestNavigationController : UINavigationController {
 		_viewControllers.append(rootViewController)
 	}
 
-	override required init?(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
@@ -58,7 +58,7 @@ class TestNavigationController : UINavigationController {
 	}
 
 	override func popViewControllerAnimated(animated: Bool) -> UIViewController? {
-		var result = super.popViewControllerAnimated(false)
+		let result = super.popViewControllerAnimated(false)
 		if let viewController = result {
 			if let lastItem = _viewControllers.last {
 				if (lastItem == viewController) {
