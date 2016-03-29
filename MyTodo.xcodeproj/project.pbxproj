@@ -14,6 +14,7 @@
 		355B24772850C05AAD2DFA45 /* TodoListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B2385410BC79B7D869E44 /* TodoListViewControllerTest.swift */; };
 		355B2658E9F13714CC450D02 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B23C162DFBB777E8E7F87 /* BaseTestCase.swift */; };
 		355B27F5E96566361D9AEDC7 /* AddTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B295DDD42FD2D6FE019A5 /* AddTodoItemViewController.swift */; };
+		355B286795A6C05A8C26A34A /* UIControlTextInputExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B21EDAB7799008D5C9F16 /* UIControlTextInputExtension.swift */; };
 		355B28A3ADC0AA032592770C /* ContraintMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B28B4866B15E4AFB3081A /* ContraintMatcher.swift */; };
 		355B2A32435BA436E008A98A /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B25B6D3C0A1EDC21ABE34 /* TodoListViewController.swift */; };
 		355B2AB4C59D2B5127370D90 /* TodoItemClosures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B26BB8684278575D21044 /* TodoItemClosures.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		355B201E855196224954CF0A /* MyTodoTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTodoTableViewDelegate.swift; sourceTree = "<group>"; };
 		355B20D90426295AB0C0AFF5 /* UIBarButtonHelperExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonHelperExtension.swift; sourceTree = "<group>"; };
+		355B21EDAB7799008D5C9F16 /* UIControlTextInputExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlTextInputExtension.swift; sourceTree = "<group>"; };
 		355B2385410BC79B7D869E44 /* TodoListViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewControllerTest.swift; sourceTree = "<group>"; };
 		355B23C162DFBB777E8E7F87 /* BaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 		355B2545ED8B284862527D20 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				355B20D90426295AB0C0AFF5 /* UIBarButtonHelperExtension.swift */,
+				355B21EDAB7799008D5C9F16 /* UIControlTextInputExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				355B20B2564001B46A871125 /* UIBarButtonHelperExtension.swift in Sources */,
 				355B24772850C05AAD2DFA45 /* TodoListViewControllerTest.swift in Sources */,
 				355B203885C146C0BCA84CFF /* AddTodoItemViewControllerTest.swift in Sources */,
+				355B286795A6C05A8C26A34A /* UIControlTextInputExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

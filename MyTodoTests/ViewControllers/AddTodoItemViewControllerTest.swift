@@ -83,4 +83,65 @@ class AddTodoItemViewControllerTest : BaseTestCase {
             assertThat(textField.font, presentAnd(equalTo(headlineFont)))
         }
     }
+
+
+    func testHasDoneButton() {
+        let addTodoItemViewController = presentAddTotoItemViewController()
+
+        let rightItem = addTodoItemViewController.navigationItem.rightBarButtonItem
+        assertThat(rightItem, present())
+        assertThat(rightItem?.valueForKey("systemItem") as? Int, presentAnd(equalTo(UIBarButtonSystemItem.Done.rawValue)))
+        assertThat(rightItem?.enabled, presentAnd(equalTo(false)))
+    }
+
+    func testEnterTextEnabledDoneButton() {
+
+        let addTodoItemViewController = presentAddTotoItemViewController()
+
+        if let titleField = addTodoItemViewController.titleField {
+            titleField.type("T")
+
+            let rightItem = addTodoItemViewController.navigationItem.rightBarButtonItem
+            assertThat(rightItem, present())
+            assertThat(rightItem?.enabled, presentAnd(equalTo(true)))
+
+
+        } else {
+            XCTFail("titleField is empty")
+        }
+
+    }
+
+    func testWhenPressingDoneButton_AddView_IsDismissed() {
+        let addTodoItemViewController = getAddTodoItemViewController()
+        let rootViewController = UIViewController()
+        let testNavigationController = TestNavigationController(rootViewController: rootViewController)
+
+        presentViewController(testNavigationController)
+        testNavigationController.pushViewController(addTodoItemViewController, animated: false)
+
+        let addButton = addTodoItemViewController.navigationItem.rightBarButtonItem
+        assertThat(addButton, present())
+        assertThat(addButton?.action, present())
+
+        addButton?.performAction()
+
+        assertThat(testNavigationController.topViewController, presentAnd(equalTo(rootViewController)))
+    }
+
+    func testWhenPressingDoneButton_TodoItem_isAdded() {
+        let addTodoItemViewController = presentAddTotoItemViewController()
+
+        var closureExecuted = false
+        addTodoItemViewController.addTodoItem = { todoItem in
+            closureExecuted = true
+        }
+
+        let addButton = addTodoItemViewController.navigationItem.rightBarButtonItem
+        addButton?.performAction()
+
+        assertThat(closureExecuted == true)
+    }
+
+
 }

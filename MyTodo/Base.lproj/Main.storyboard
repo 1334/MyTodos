@@ -80,6 +80,9 @@
                                 <rect key="frame" x="20" y="84" width="560" height="20"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="checkEnableDoneButton" destination="NYD-3L-wtO" eventType="editingChanged" id="45p-pt-WOE"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,7 +92,13 @@
                             <constraint firstAttribute="trailing" secondItem="wBp-Eg-i02" secondAttribute="trailing" constant="20" id="hlc-3A-e2R"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Todo" id="dj4-P9-tU5"/>
+                    <navigationItem key="navigationItem" title="Add Todo" id="dj4-P9-tU5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nrj-5u-nM1">
+                            <connections>
+                                <action selector="donePressed" destination="NYD-3L-wtO" id="W86-wI-8RI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="titleField" destination="wBp-Eg-i02" id="MGA-po-6BI"/>
                     </connections>

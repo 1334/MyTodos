@@ -16,7 +16,7 @@ class TestNavigationController : UINavigationController {
 	override init(rootViewController: UIViewController) {
 		super.init(rootViewController: rootViewController)
 		_rootViewController = rootViewController
-		_viewControllers.append(rootViewController)
+		//_viewControllers.append(rootViewController)
 	}
 
 	required init?(coder aDecoder: NSCoder) {

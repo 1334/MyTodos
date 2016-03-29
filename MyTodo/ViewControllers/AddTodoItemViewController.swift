@@ -10,16 +10,25 @@ import UIKit
 
 class AddTodoItemViewController: UIViewController {
     var addTodoItem: AddTodoItemClosure?
-    
+
     @IBOutlet weak var titleField: UITextField?
-    
+
     @IBAction func donePressed() {
-        
         if let text = titleField?.text {
             addTodoItem?(TodoItem(title:text))
-            
         }
         self.navigationController?.popViewControllerAnimated(true)
-    
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        checkEnableDoneButton()
+    }
+
+
+    @IBAction func checkEnableDoneButton() {
+        if let doneButton = navigationItem.rightBarButtonItem {
+            doneButton.enabled = titleField?.text?.characters.count > 0
+        }
     }
 }
