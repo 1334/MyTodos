@@ -2,7 +2,17 @@ PODS:
   - SwiftHamcrest (0.3)
 
 DEPENDENCIES:
-  - SwiftHamcrest (~> 0.3)
+  - SwiftHamcrest (from `https://github.com/renep/SwiftHamcrest.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  SwiftHamcrest:
+    :branch: master
+    :git: https://github.com/renep/SwiftHamcrest.git
+
+CHECKOUT OPTIONS:
+  SwiftHamcrest:
+    :commit: bbcdcffa25dc2fa6782ce8515c88378758b3f259
+    :git: https://github.com/renep/SwiftHamcrest.git
 
 SPEC CHECKSUMS:
   SwiftHamcrest: 652d2e197df0957b532f1c66a9112bc809030965

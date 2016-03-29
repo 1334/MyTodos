@@ -10,7 +10,7 @@ import XCTest
 import Hamcrest
 @testable import MyTodo
 
-class TodoListViewControllerTest: XCTestCase {
+class TodoListViewControllerTest: BaseTestCase {
 
     func testHasATableView() {
         let todoListViewController = getTodoListViewController()
@@ -21,7 +21,7 @@ class TodoListViewControllerTest: XCTestCase {
     func testTableViewHasADataSource() {
         let todoListViewController = getTodoListViewController()
         presentViewController(todoListViewController)
-        
+
         if let tableView = todoListViewController.tableView {
             assertThat(tableView.dataSource, present())
         }
@@ -30,7 +30,7 @@ class TodoListViewControllerTest: XCTestCase {
     func testTableViewHasADelegate() {
         let todoListViewController = getTodoListViewController()
         presentViewController(todoListViewController)
-        
+
         if let tableView = todoListViewController.tableView {
             assertThat(tableView.delegate, present())
         }
@@ -38,8 +38,11 @@ class TodoListViewControllerTest: XCTestCase {
 
     func testTableViewFillsSuperView() {
         let todoListViewController = getTodoListViewController()
-        presentViewController(todoListViewController)
-        
+
+        let navigationController = UINavigationController(rootViewController:todoListViewController)
+
+        presentViewController(navigationController, useWindow:true)
+
         if let tableView = todoListViewController.tableView {
             assertThat(tableView.frame.origin.x, equalTo(0))
             assertThat(tableView.frame.origin.y, equalTo(0))
@@ -47,14 +50,27 @@ class TodoListViewControllerTest: XCTestCase {
             assertThat(tableView.frame.size.height, equalTo(todoListViewController.view.frame.size.height))
         }
     }
-    
+
+    func testTableViewLayoutWithConstraints() {
+			  let todoListViewController = getTodoListViewController()
+        presentViewController(todoListViewController)
+
+				if let tableView = todoListViewController.tableView {
+					//assertThat(tableView, isPinned(.Leading))
+					//assertThat(tableView, isPinned(.Trailing))
+					assertThat(tableView, isPinned(.Top))
+					assertThat(tableView, isPinned(.Bottom, to: todoListViewController.bottomLayoutGuide))
+				}
+	  }
+
+
     func testHasCorrectTitle() {
         let todoListViewController = getTodoListViewController()
         presentViewController(todoListViewController)
         
         assertThat(todoListViewController.navigationItem.title, presentAnd(equalTo("My Todo List")))
     }
-    
+
     func getTodoListViewController() -> TodoListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let initialViewController = storyboard.instantiateInitialViewController() as? UINavigationController {
