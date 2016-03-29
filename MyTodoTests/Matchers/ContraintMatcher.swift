@@ -44,7 +44,7 @@ private func hasMatchingConstraint(view: UIView, to: AnyObject?, attribute: NSLa
 				secondAttribute = inverseAttribute(attribute)
 			}
 
-			if (toItem is UILayoutSupport && firstAttribute == .Bottom) {
+			if (toItem is UILayoutSupport) {
 				secondAttribute = inverseAttribute(attribute)
 			}
 
@@ -54,6 +54,7 @@ private func hasMatchingConstraint(view: UIView, to: AnyObject?, attribute: NSLa
 			}
 
 			for constraint in commonSuperView.constraints {
+
 				if (constraint.firstAttribute == firstAttribute &&
 								constraint.secondAttribute == secondAttribute &&
 								constraint.firstItem === firstItem &&
@@ -67,6 +68,7 @@ private func hasMatchingConstraint(view: UIView, to: AnyObject?, attribute: NSLa
 	}
 	return .Mismatch(nil)
 }
+
 
 
 
@@ -90,6 +92,10 @@ public func isPinned<T:UIView>(attribute: NSLayoutAttribute) -> Matcher<T> {
 	return isPinned(attribute, toView: nil, gap: 0)
 }
 
+
+public func isPinned<T:UIView>(attribute: NSLayoutAttribute, gap: CGFloat) -> Matcher<T> {
+	return isPinned(attribute, toView: nil, gap: gap)
+}
 
 public func isPinned<T:UIView>(attribute: NSLayoutAttribute, to: AnyObject?, gap: CGFloat) -> Matcher<T> {
 	return Matcher("view is pinned \(descriptionOfAttribute(attribute)) to its superview") {

@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="925" y="745"/>
         </scene>
-        <!--Add Todo Item View Controller-->
+        <!--Add Todo-->
         <scene sceneID="Rmq-BS-702">
             <objects>
-                <viewController id="NYD-3L-wtO" customClass="AddTodoItemViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddTodoItemViewController" id="NYD-3L-wtO" customClass="AddTodoItemViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KL5-Un-Lyq"/>
                         <viewControllerLayoutGuide type="bottom" id="Dt2-yp-sfD"/>
@@ -75,8 +75,24 @@
                     <view key="view" contentMode="scaleToFill" id="oJ0-Ss-iQW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wBp-Eg-i02">
+                                <rect key="frame" x="20" y="84" width="560" height="20"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wBp-Eg-i02" firstAttribute="top" secondItem="KL5-Un-Lyq" secondAttribute="bottom" constant="20" id="2BV-n1-ZCe"/>
+                            <constraint firstItem="wBp-Eg-i02" firstAttribute="leading" secondItem="oJ0-Ss-iQW" secondAttribute="leading" constant="20" id="WcQ-yP-6TQ"/>
+                            <constraint firstAttribute="trailing" secondItem="wBp-Eg-i02" secondAttribute="trailing" constant="20" id="hlc-3A-e2R"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Add Todo" id="dj4-P9-tU5"/>
+                    <connections>
+                        <outlet property="titleField" destination="wBp-Eg-i02" id="MGA-po-6BI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s1m-2p-S40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
