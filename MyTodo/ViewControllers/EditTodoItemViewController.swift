@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 
-class EditTodoItemViewController : UIViewController {
+class EditTodoItemViewController : TodoItemViewController {
     
     var todoItem: TodoItem?
     
+    override func viewWillAppear(animated: Bool) {
+        self.titleField?.text = todoItem?.title
+        super.viewWillAppear(animated)
+    }
 }

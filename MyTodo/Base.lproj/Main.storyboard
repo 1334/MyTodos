@@ -82,7 +82,7 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="checkEnableDoneButton" destination="NYD-3L-wtO" eventType="editingChanged" id="45p-pt-WOE"/>
+                                    <action selector="checkEnableRightBarButton" destination="NYD-3L-wtO" eventType="editingChanged" id="qJk-2e-nAz"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -96,7 +96,7 @@
                     <navigationItem key="navigationItem" title="Add Todo" id="dj4-P9-tU5">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="nrj-5u-nM1">
                             <connections>
-                                <action selector="donePressed" destination="NYD-3L-wtO" id="W86-wI-8RI"/>
+                                <action selector="rightBarButtonPressed" destination="NYD-3L-wtO" id="KUc-S2-5t7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="1580" y="745"/>
         </scene>
-        <!--Edit Todo Item View Controller-->
+        <!--Edit Todo-->
         <scene sceneID="GzY-ya-xVA">
             <objects>
-                <viewController id="yrl-X8-cND" customClass="EditTodoItemViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditTodoItemViewController" id="yrl-X8-cND" customClass="EditTodoItemViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HSM-Gd-0zu"/>
                         <viewControllerLayoutGuide type="bottom" id="ibC-KF-toW"/>
@@ -119,8 +119,33 @@
                     <view key="view" contentMode="scaleToFill" id="osz-Rf-zOP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iDS-c0-qqo">
+                                <rect key="frame" x="20" y="84" width="560" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="checkEnableRightBarButton" destination="yrl-X8-cND" eventType="editingChanged" id="XZu-IT-9hq"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iDS-c0-qqo" firstAttribute="leading" secondItem="osz-Rf-zOP" secondAttribute="leading" constant="20" id="8Hm-Xl-jrd"/>
+                            <constraint firstItem="iDS-c0-qqo" firstAttribute="top" secondItem="HSM-Gd-0zu" secondAttribute="bottom" constant="20" id="T4d-ew-oXQ"/>
+                            <constraint firstAttribute="trailing" secondItem="iDS-c0-qqo" secondAttribute="trailing" constant="20" id="kH9-ih-E1I"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Edit Todo" id="feO-a0-8I6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Pno-VU-ckr">
+                            <connections>
+                                <action selector="rightBarButtonPressed" destination="yrl-X8-cND" id="48O-4t-cHA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="titleField" destination="iDS-c0-qqo" id="fuU-yI-eKd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hRE-DH-Tje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

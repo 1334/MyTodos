@@ -186,8 +186,6 @@ class TodoListViewControllerTest: BaseTestCase {
         } else {
             XCTFail("tableView is empty")
         }
-        
-        
     }
 
 }

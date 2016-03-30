@@ -26,6 +26,8 @@
 		A74EEB841C806CD7001930C6 /* AppDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */; };
 		A74EEB891C80860D001930C6 /* Hamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74EEB881C80860D001930C6 /* Hamcrest.framework */; };
 		A78F01A21CABBB510043469C /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */; };
+		A78F01A41CABCE210043469C /* TodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A31CABCE210043469C /* TodoItemViewController.swift */; };
+		A78F01A61CABCFE60043469C /* EditTodoItemViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A51CABCFE60043469C /* EditTodoItemViewControllerTest.swift */; };
 		A7B440BA1CAAB77E00CE4D5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7B440BC1CAAB77E00CE4D5E /* Main.storyboard */; };
 		E6A62D5AB74334F6B7FDE972 /* Pods_MyTodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B771897B68DB8B212B61736 /* Pods_MyTodoTests.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +69,8 @@
 		A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTest.swift; sourceTree = "<group>"; };
 		A74EEB881C80860D001930C6 /* Hamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hamcrest.framework; path = Carthage/Build/iOS/Hamcrest.framework; sourceTree = "<group>"; };
 		A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
+		A78F01A31CABCE210043469C /* TodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemViewController.swift; sourceTree = "<group>"; };
+		A78F01A51CABCFE60043469C /* EditTodoItemViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewControllerTest.swift; sourceTree = "<group>"; };
 		A7B440BB1CAAB77E00CE4D5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7B440BE1CAABD1000CE4D5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +118,7 @@
 			children = (
 				355B2385410BC79B7D869E44 /* TodoListViewControllerTest.swift */,
 				355B2BB5921DA3BEB332CD84 /* AddTodoItemViewControllerTest.swift */,
+				A78F01A51CABCFE60043469C /* EditTodoItemViewControllerTest.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 				355B25B6D3C0A1EDC21ABE34 /* TodoListViewController.swift */,
 				355B295DDD42FD2D6FE019A5 /* AddTodoItemViewController.swift */,
 				A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */,
+				A78F01A31CABCE210043469C /* TodoItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -383,6 +389,7 @@
 				A74EEB641C806BCC001930C6 /* AppDelegate.swift in Sources */,
 				355B2A32435BA436E008A98A /* TodoListViewController.swift in Sources */,
 				A78F01A21CABBB510043469C /* EditTodoItemViewController.swift in Sources */,
+				A78F01A41CABCE210043469C /* TodoItemViewController.swift in Sources */,
 				355B218041406D0C288907A9 /* TodoItem.swift in Sources */,
 				355B2AB4C59D2B5127370D90 /* TodoItemClosures.swift in Sources */,
 				355B27F5E96566361D9AEDC7 /* AddTodoItemViewController.swift in Sources */,
@@ -399,6 +406,7 @@
 				355B2658E9F13714CC450D02 /* BaseTestCase.swift in Sources */,
 				355B28A3ADC0AA032592770C /* ContraintMatcher.swift in Sources */,
 				355B20B2564001B46A871125 /* UIBarButtonHelperExtension.swift in Sources */,
+				A78F01A61CABCFE60043469C /* EditTodoItemViewControllerTest.swift in Sources */,
 				355B24772850C05AAD2DFA45 /* TodoListViewControllerTest.swift in Sources */,
 				355B203885C146C0BCA84CFF /* AddTodoItemViewControllerTest.swift in Sources */,
 				355B286795A6C05A8C26A34A /* UIControlTextInputExtension.swift in Sources */,

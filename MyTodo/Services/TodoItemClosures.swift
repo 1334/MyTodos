@@ -8,4 +8,6 @@
 
 import Foundation
 
-typealias AddTodoItemClosure = (TodoItem) -> Void
+typealias TodoItemClosure  = (TodoItem) -> Void
+typealias AddTodoItemClosure = TodoItemClosure
+typealias EditTodoItemClosure = TodoItemClosure
