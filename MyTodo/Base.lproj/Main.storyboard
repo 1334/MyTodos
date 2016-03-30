@@ -58,6 +58,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="2NT-TV-uGC" id="Vv1-Jf-PBY"/>
+                        <segue destination="yrl-X8-cND" kind="show" identifier="EditTodoItem" id="rTI-Qg-DYF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26i-AF-Y61" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -106,6 +107,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s1m-2p-S40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1580" y="745"/>
+        </scene>
+        <!--Edit Todo Item View Controller-->
+        <scene sceneID="GzY-ya-xVA">
+            <objects>
+                <viewController id="yrl-X8-cND" customClass="EditTodoItemViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HSM-Gd-0zu"/>
+                        <viewControllerLayoutGuide type="bottom" id="ibC-KF-toW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="osz-Rf-zOP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hRE-DH-Tje" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1580" y="1528"/>
         </scene>
     </scenes>
 </document>

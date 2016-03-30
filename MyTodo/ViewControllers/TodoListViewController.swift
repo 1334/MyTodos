@@ -8,17 +8,18 @@
 
 import UIKit
 
-class TodoListViewController: UIViewController, UITableViewDataSource {
+class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    static let editTodoItemIdentifier = "EditTodoItem"
+    static let cellIdentifier = "todoListCellItem"
+    
     @IBOutlet var tableView:UITableView?
-    let tableViewDelegate:UITableViewDelegate = MyTodoTableViewDelegate()
-    let cellIdentifier = "todoListCellItem"
 
     var todoItemService = TodoItemService()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView?.delegate = tableViewDelegate
+        tableView?.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -32,7 +33,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let tableCell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+        let tableCell = UITableViewCell(style: .Default, reuseIdentifier: TodoListViewController.cellIdentifier)
         tableCell.textLabel?.text = todoItemService.todoItems[indexPath.row].title
         return tableCell
     }
@@ -42,7 +43,17 @@ class TodoListViewController: UIViewController, UITableViewDataSource {
         if let addTodoViewController = segue.destinationViewController as? AddTodoItemViewController {
             addTodoViewController.addTodoItem = todoItemService.addTodoItem
         }
+        
+        if let editTodoItemViewController = segue.destinationViewController as? EditTodoItemViewController {
+            if let todoItem = sender as? TodoItem {
+                editTodoItemViewController.todoItem = todoItem
+            }
+        }
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let todoItem = todoItemService.todoItems[indexPath.row]
+        self.performSegueWithIdentifier(TodoListViewController.editTodoItemIdentifier, sender: todoItem)
+    }
 
 }

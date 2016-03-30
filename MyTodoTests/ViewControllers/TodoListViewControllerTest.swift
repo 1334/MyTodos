@@ -12,6 +12,18 @@ import Hamcrest
 
 class TodoListViewControllerTest: BaseTestCase {
 
+    func getTodoListViewController() -> TodoListViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let initialViewController = storyboard.instantiateInitialViewController() as? UINavigationController {
+            if let todoListViewController = initialViewController.topViewController as? TodoListViewController {
+                return todoListViewController
+            }
+        }
+		
+        XCTFail("Could not load TodoListViewController")
+        return TodoListViewController()
+	}
+	
     func testHasATableView() {
         let todoListViewController = getTodoListViewController()
         presentViewController(todoListViewController)
@@ -150,16 +162,32 @@ class TodoListViewControllerTest: BaseTestCase {
         assertThat(tableView.hasReloadData == true)
     }
 
-    func getTodoListViewController() -> TodoListViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let initialViewController = storyboard.instantiateInitialViewController() as? UINavigationController {
-            if let todoListViewController = initialViewController.topViewController as? TodoListViewController {
-                return todoListViewController
+    
+    func testWhenSelectingTodoItem_EditViewIsShown() {
+        let todoListViewController = presentTodoListViewController()
+        
+        if let tableView = todoListViewController.tableView {
+            todoListViewController.tableView(tableView, didSelectRowAtIndexPath:NSIndexPath(forRow: 0, inSection: 0))
+            assertThat(todoListViewController.navigationController?.topViewController, presentAnd(instanceOf(EditTodoItemViewController)))
+        } else {
+            XCTFail("tableView is empty")
+        }
+    }
+    
+    func testWhenSelectingTodoItem_EditViewIsShown_AndTodoItemIsSet() {
+        let todoListViewController = presentTodoListViewController()
+        
+        if let tableView = todoListViewController.tableView {
+            todoListViewController.tableView(tableView, didSelectRowAtIndexPath:NSIndexPath(forRow: 0, inSection: 0))
+            if let editTodoItemViewController = todoListViewController.navigationController?.topViewController as? EditTodoItemViewController {
+                    assertThat(editTodoItemViewController.todoItem, present())
             }
+            
+        } else {
+            XCTFail("tableView is empty")
         }
         
-        XCTFail("Could not load TodoListViewController")
-        return TodoListViewController()
+        
     }
 
 }
