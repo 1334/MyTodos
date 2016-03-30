@@ -47,6 +47,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         if let editTodoItemViewController = segue.destinationViewController as? EditTodoItemViewController {
             if let todoItem = sender as? TodoItem {
                 editTodoItemViewController.todoItem = todoItem
+                editTodoItemViewController.saveTodoItem = todoItemService.saveTodoItem
             }
         }
     }

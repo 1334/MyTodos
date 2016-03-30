@@ -18,4 +18,22 @@ class EditTodoItemViewController : TodoItemViewController {
         self.titleField?.text = todoItem?.title
         super.viewWillAppear(animated)
     }
+    
+    var saveTodoItem: EditTodoItemClosure? {
+        set(editTodoItemClosure) {
+            super.todoItemClosure = editTodoItemClosure
+        }
+        
+        get {
+            return super.todoItemClosure
+        }
+    }
+    
+    
+    override func createTodoItem() -> TodoItem? {
+        if let text = titleField?.text {
+            return todoItem?.setTitle(text)
+        }
+        return todoItem
+    }
 }

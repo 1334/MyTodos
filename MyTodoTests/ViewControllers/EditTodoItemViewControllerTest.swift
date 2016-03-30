@@ -138,11 +138,15 @@ class EditTodoItemViewControllerTest : BaseTestCase {
 
     
     func testWhenPressingDoneButton_TodoItem_isChanged() {
-        let viewController = presentEditTodoItemViewController()
+        let todoItem = TodoItem(identifier: 1, title: "Buy milk")
+        let viewController = presentEditTodoItemViewController(todoItem)
+        
         
         var closureExecuted = false
         viewController.todoItemClosure = { todoItem in
             closureExecuted = true
+            assertThat(todoItem.identifier, equalTo(1))
+            assertThat(todoItem.title, equalTo("Buy milk"))
             return TodoItem(title: "")
         }
         

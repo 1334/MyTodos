@@ -189,5 +189,19 @@ class TodoListViewControllerTest: BaseTestCase {
             XCTFail("tableView is empty")
         }
     }
+    
+    
+    func testWhenSelectingTodoItem_EditViewIsShown_AndClosureIsSet() {
+        let todoListViewController = presentTodoListViewController()
+        
+        if let tableView = todoListViewController.tableView {
+            todoListViewController.tableView(tableView, didSelectRowAtIndexPath:NSIndexPath(forRow: 0, inSection: 0))
+            let editTodoItemViewController = todoListViewController.navigationController?.topViewController as? EditTodoItemViewController
+            assertThat(editTodoItemViewController?.saveTodoItem, present())
+        } else {
+            XCTFail("tableView is empty")
+        }
+        
+    }
 
 }

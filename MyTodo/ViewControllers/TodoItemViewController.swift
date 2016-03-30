@@ -15,12 +15,19 @@ class TodoItemViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField?
     
     @IBAction func rightBarButtonPressed() {
-        if let text = titleField?.text {
-            todoItemClosure?(TodoItem(title:text))
+        if let todoItem = createTodoItem() {
+            todoItemClosure?(todoItem)
         }
         self.navigationController?.popViewControllerAnimated(true)
     }
-
+    
+    func createTodoItem() -> TodoItem? {
+        if let text = titleField?.text {
+            return TodoItem(title:text)
+        }
+        return nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleField?.placeholder = "Title"
