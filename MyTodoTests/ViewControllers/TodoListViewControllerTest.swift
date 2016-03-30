@@ -33,19 +33,19 @@ class TodoListViewControllerTest: BaseTestCase {
 
     func testTableViewHasOneSection() {
         let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItems = []
+        todoListViewController.todoItemService.todoItems = []
         
         for arrayLength in 0...3 {
             assertThat(todoListViewController.tableView(todoListViewController.tableView!, numberOfRowsInSection: 0), equalTo(arrayLength))
-            todoListViewController.todoItems.append(TodoItem(title: "foobar"))
+            todoListViewController.todoItemService.todoItems.append(TodoItem(title: "foobar"))
         }
     }
     
     func testTableViewShowsAllTodoItems() {
         let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItems = [ TodoItem(title: "1"), TodoItem(title: "2"), TodoItem(title: "3") ]
+        todoListViewController.todoItemService.todoItems = [ TodoItem(title: "1"), TodoItem(title: "2"), TodoItem(title: "3") ]
         
-        for (index, item) in todoListViewController.todoItems.enumerate() {
+        for (index, item) in todoListViewController.todoItemService.todoItems.enumerate() {
             let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
             assertThat(tableCell.textLabel, present())
 
@@ -123,6 +123,32 @@ class TodoListViewControllerTest: BaseTestCase {
         assertThat(todoListViewController.navigationController?.topViewController, presentAnd(instanceOf(AddTodoItemViewController)))
     }
 
+    func testWhenPressingAddButtonAddViewIsShown_AndClosureIsSet() {
+         let todoListViewController = presentTodoListViewController()
+
+         let addButton = todoListViewController.navigationItem.rightBarButtonItem
+         assertThat(addButton, present())
+         assertThat(addButton?.action, present())
+
+         addButton?.performAction()
+
+
+         let addTodoItemViewController = todoListViewController.navigationController?.topViewController as? AddTodoItemViewController
+         assertThat(addTodoItemViewController, presentAnd(instanceOf(AddTodoItemViewController)))
+
+         assertThat(addTodoItemViewController?.addTodoItem, present())
+     }
+
+    func testTableGetsReloadedOnViewWillAppear() {
+        let todoListViewController = presentTodoListViewController()
+
+        let tableView = UITableViewStub()
+        todoListViewController.tableView = tableView
+
+        todoListViewController.viewWillAppear(false)
+
+        assertThat(tableView.hasReloadData == true)
+    }
 
     func getTodoListViewController() -> TodoListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

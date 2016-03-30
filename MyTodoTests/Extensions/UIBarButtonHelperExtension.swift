@@ -9,19 +9,11 @@
 import Foundation
 import UIKit
 
-extension UIControl {
 
-
-    func type(text: String) {
-        if let textfield = self as? UITextField {
-            var textFieldText = ""
-            if let t = textfield.text {
-                textFieldText += t
-            }
-            textFieldText += text
-            textfield.text = textFieldText
-            textfield.sendActionsForControlEvents(UIControlEvents.EditingChanged)
-        }
+extension UIKit.UIBarButtonItem {
+    func performAction() {
+        UIApplication.sharedApplication().sendAction(self.action, to: self.target, from: self, forEvent: nil)
     }
-    
+
 }
+
