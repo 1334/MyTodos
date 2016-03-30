@@ -28,6 +28,8 @@
 		A78F01A21CABBB510043469C /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */; };
 		A78F01A41CABCE210043469C /* TodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A31CABCE210043469C /* TodoItemViewController.swift */; };
 		A78F01A61CABCFE60043469C /* EditTodoItemViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A51CABCFE60043469C /* EditTodoItemViewControllerTest.swift */; };
+		A78F01A91CABDA880043469C /* TodoItemServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A81CABDA880043469C /* TodoItemServiceTest.swift */; };
+		A78F01AC1CABE0F80043469C /* TodoItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01AB1CABE0F80043469C /* TodoItemTest.swift */; };
 		A7B440BA1CAAB77E00CE4D5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7B440BC1CAAB77E00CE4D5E /* Main.storyboard */; };
 		E6A62D5AB74334F6B7FDE972 /* Pods_MyTodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B771897B68DB8B212B61736 /* Pods_MyTodoTests.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,8 @@
 		A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
 		A78F01A31CABCE210043469C /* TodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemViewController.swift; sourceTree = "<group>"; };
 		A78F01A51CABCFE60043469C /* EditTodoItemViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewControllerTest.swift; sourceTree = "<group>"; };
+		A78F01A81CABDA880043469C /* TodoItemServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemServiceTest.swift; sourceTree = "<group>"; };
+		A78F01AB1CABE0F80043469C /* TodoItemTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemTest.swift; sourceTree = "<group>"; };
 		A7B440BB1CAAB77E00CE4D5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7B440BE1CAABD1000CE4D5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +217,8 @@
 		A74EEB771C806BCC001930C6 /* MyTodoTests */ = {
 			isa = PBXGroup;
 			children = (
+				A78F01AA1CABE0700043469C /* Models */,
+				A78F01A71CABDA6D0043469C /* Services */,
 				428C9F441C9071550016AE97 /* Helpers */,
 				A74EEB7A1C806BCC001930C6 /* Info.plist */,
 				A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */,
@@ -232,6 +238,22 @@
 				8B771897B68DB8B212B61736 /* Pods_MyTodoTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A78F01A71CABDA6D0043469C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A78F01A81CABDA880043469C /* TodoItemServiceTest.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A78F01AA1CABE0700043469C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A78F01AB1CABE0F80043469C /* TodoItemTest.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,7 +429,9 @@
 				355B28A3ADC0AA032592770C /* ContraintMatcher.swift in Sources */,
 				355B20B2564001B46A871125 /* UIBarButtonHelperExtension.swift in Sources */,
 				A78F01A61CABCFE60043469C /* EditTodoItemViewControllerTest.swift in Sources */,
+				A78F01AC1CABE0F80043469C /* TodoItemTest.swift in Sources */,
 				355B24772850C05AAD2DFA45 /* TodoListViewControllerTest.swift in Sources */,
+				A78F01A91CABDA880043469C /* TodoItemServiceTest.swift in Sources */,
 				355B203885C146C0BCA84CFF /* AddTodoItemViewControllerTest.swift in Sources */,
 				355B286795A6C05A8C26A34A /* UIControlTextInputExtension.swift in Sources */,
 				355B21DC87056251724DC1C0 /* UITableViewStub.swift in Sources */,

@@ -42,8 +42,10 @@ class TodoListViewControllerTest: BaseTestCase {
     func testTableViewHasADelegate() {
         withTableView() { tableView in assertThat(tableView.delegate, present()) }
     }
-
-    func testTableViewHasOneSection() {
+    
+    
+    
+    func testTableViewHasMultiplesRows() {
         let todoListViewController = presentTodoListViewController()
         todoListViewController.todoItemService.todoItems = []
         

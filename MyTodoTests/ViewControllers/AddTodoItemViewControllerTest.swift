@@ -135,6 +135,7 @@ class AddTodoItemViewControllerTest : BaseTestCase {
         var closureExecuted = false
         addTodoItemViewController.addTodoItem = { todoItem in
             closureExecuted = true
+            return TodoItem(title: "")
         }
 
         let addButton = addTodoItemViewController.navigationItem.rightBarButtonItem

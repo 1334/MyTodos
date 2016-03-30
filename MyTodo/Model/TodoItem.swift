@@ -9,12 +9,37 @@
 import Foundation
 
 class TodoItem: NSObject {
-    let title: String
-    var done: Bool
     
-    init(title: String) {
+    static let newItemIdentifer = -1
+    
+    let title: String
+    let done: Bool
+    let identifier: Int
+    
+    init(identifier: Int, title: String, done: Bool) {
+        self.identifier = identifier
         self.title = title
-        self.done = false
-        super.init()
+        self.done = done
     }
+
+    convenience init(identifier: Int, title: String) {
+        self.init(identifier:identifier, title:title, done:false)
+    }
+
+    convenience init(title: String) {
+        self.init(identifier:TodoItem.newItemIdentifer, title:title, done:false)
+    }
+    
+    func setTitle(title: String) -> TodoItem {
+        return TodoItem(identifier: self.identifier, title: title, done:self.done)
+    }
+    
+
+}
+
+
+func ==(lhs: TodoItem, rhs: TodoItem) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.title == rhs.title &&
+        lhs.done == rhs.done
 }

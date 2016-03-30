@@ -113,7 +113,6 @@ class EditTodoItemViewControllerTest : BaseTestCase {
         } else {
             XCTFail("titleField is empty")
         }
-        
     }
     
 
@@ -144,6 +143,7 @@ class EditTodoItemViewControllerTest : BaseTestCase {
         var closureExecuted = false
         viewController.todoItemClosure = { todoItem in
             closureExecuted = true
+            return TodoItem(title: "")
         }
         
         let addButton = viewController.navigationItem.rightBarButtonItem
