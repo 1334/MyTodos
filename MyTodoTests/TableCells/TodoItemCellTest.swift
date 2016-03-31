@@ -28,7 +28,6 @@ class TodoItemCellTest : BaseTestCase {
     
     func presentTodoListViewController() -> TodoListViewController {
         let todoListViewController = getTodoListViewController()
-        todoListViewController.todoItemService.todoItems = []
         todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy milk"))
 
         presentViewController(todoListViewController)
@@ -183,8 +182,8 @@ class TodoItemCellTest : BaseTestCase {
             cell.doneButton?.performAction()
         }
         
-        assertThat(viewController.todoItemService.todoItems, hasCount(1))
-        assertThat(viewController.todoItemService.todoItems[0].done, equalTo(true))
+        assertThat(viewController.todoItemService.todoItems(), hasCount(1))
+        assertThat(viewController.todoItemService.todoItems()[0].done, equalTo(true))
     }
 
 

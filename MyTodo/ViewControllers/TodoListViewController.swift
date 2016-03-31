@@ -29,12 +29,12 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
 
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoItemService.todoItems.count
+        return todoItemService.todoItems().count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let tableCell = tableView.dequeueReusableCellWithIdentifier(TodoListViewController.cellIdentifier) as? TodoItemCell {
-            tableCell.todoItem = todoItemService.todoItems[indexPath.row]
+            tableCell.todoItem = todoItemService.todoItems()[indexPath.row]
             tableCell.todoItemChangeClosure = {
                 [unowned self] (old, new) in
                 self.todoItemService.saveTodoItem(new)
@@ -60,8 +60,9 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let todoItem = todoItemService.todoItems[indexPath.row]
-        self.performSegueWithIdentifier(TodoListViewController.editTodoItemIdentifier, sender: todoItem)
+        if let todoItem = todoItemAtIndex(indexPath.row) {
+            self.performSegueWithIdentifier(TodoListViewController.editTodoItemIdentifier, sender: todoItem)
+        }
     }
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -69,8 +70,17 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        let todoItem = todoItemService.todoItems[indexPath.row]
-        todoItemService.removeItem(todoItem)
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        if let todoItem = todoItemAtIndex(indexPath.row) {
+            todoItemService.removeItem(todoItem)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+    
+    func todoItemAtIndex(index: Int) -> TodoItem? {
+        let todoItems = todoItemService.todoItems()
+        if todoItems.count > index {
+            return todoItems[index]
+        }
+        return nil
     }
 }
