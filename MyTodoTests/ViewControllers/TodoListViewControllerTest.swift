@@ -60,10 +60,13 @@ class TodoListViewControllerTest: BaseTestCase {
         todoListViewController.todoItemService.todoItems = [ TodoItem(title: "1"), TodoItem(title: "2"), TodoItem(title: "3") ]
         
         for (index, item) in todoListViewController.todoItemService.todoItems.enumerate() {
-            let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
-            assertThat(tableCell.textLabel, present())
+            if let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as? TodoItemCell {
+                assertThat(tableCell.titleLabel, present())
 
-            assertThat(tableCell.textLabel?.text, presentAnd(equalTo(item.title)))
+                assertThat(tableCell.titleLabel?.text, presentAnd(equalTo(item.title)))
+            } else {
+                XCTFail("cell empty")
+            }
         }
 
     }
@@ -202,6 +205,17 @@ class TodoListViewControllerTest: BaseTestCase {
             XCTFail("tableView is empty")
         }
         
+    }
+    
+    func testTableCellIsProperClass() {
+        let todoListViewController = presentTodoListViewController()
+        todoListViewController.todoItemService.todoItems = []
+        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy milk"))
+        
+        for (index, _) in todoListViewController.todoItemService.todoItems.enumerate() {
+            let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
+            assertThat(tableCell, instanceOf(TodoItemCell))
+        }
     }
 
 }

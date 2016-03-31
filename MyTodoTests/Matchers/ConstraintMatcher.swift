@@ -20,7 +20,7 @@ private func findSuperView(first:UIView, _ second:UIView) -> UIView? {
 	return findSuperView(first, second.superview)
 }
 
-private func findSuperView(first:UIView?, _ second:UIView?) -> UIView? {
+public func findSuperView(first:UIView?, _ second:UIView?) -> UIView? {
 	if let f = first {
 		if let s = second {
 			return findSuperView(f, s)
@@ -44,9 +44,14 @@ private func hasMatchingConstraint(view: UIView, to: AnyObject?, attribute: NSLa
 				secondAttribute = inverseAttribute(attribute)
 			}
 
+			if (commonSuperView !== secondItem) {
+				secondAttribute = inverseAttribute(attribute)
+			}
+
 			if (toItem is UILayoutSupport) {
 				secondAttribute = inverseAttribute(attribute)
 			}
+
 
 			if (attribute == .Bottom || attribute == .Right || attribute == .Trailing) {
 				swap(&firstItem, &secondItem)
@@ -109,7 +114,7 @@ public func isPinned<T:UIView>(attribute: NSLayoutAttribute, to: AnyObject?) -> 
 }
 
 
-private func descriptionOfAttribute(attribute:NSLayoutAttribute) -> String {
+public func descriptionOfAttribute(attribute:NSLayoutAttribute) -> String {
 	switch attribute {
 		case .Left:
 			return "Left"
@@ -168,6 +173,10 @@ func inverseAttribute(attribute: NSLayoutAttribute) -> NSLayoutAttribute {
 		return .Left;
 	case .Left:
 		return .Right;
+	case .Leading:
+		return .Trailing
+	case .Trailing:
+		return .Leading
 	default:
 		return attribute;
 	}

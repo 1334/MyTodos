@@ -36,6 +36,42 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-TV-uGC">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TodoItemCell" id="Zlj-OE-mwo" customClass="TodoItemCell" customModule="MyTodo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zlj-OE-mwo" id="x1j-i0-7i9">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUB-db-EFT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="e9Q-EO-xbX"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHL-CT-VPX">
+                                                    <rect key="frame" x="44" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="oUB-db-EFT" secondAttribute="bottom" id="6iD-Sh-XJG"/>
+                                                <constraint firstItem="ZHL-CT-VPX" firstAttribute="centerY" secondItem="x1j-i0-7i9" secondAttribute="centerY" id="f7B-l2-Ngv"/>
+                                                <constraint firstItem="oUB-db-EFT" firstAttribute="top" secondItem="x1j-i0-7i9" secondAttribute="top" id="lPI-aQ-UWL"/>
+                                                <constraint firstItem="ZHL-CT-VPX" firstAttribute="leading" secondItem="oUB-db-EFT" secondAttribute="trailing" id="sNR-8y-vlp"/>
+                                                <constraint firstItem="oUB-db-EFT" firstAttribute="leading" secondItem="x1j-i0-7i9" secondAttribute="leading" id="we2-jt-inf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="doneButton" destination="oUB-db-EFT" id="qxF-3G-0oV"/>
+                                            <outlet property="titleLabel" destination="ZHL-CT-VPX" id="Qcz-h5-hZP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="lYt-Fc-1vh" id="V5V-t4-h1d"/>
                                 </connections>

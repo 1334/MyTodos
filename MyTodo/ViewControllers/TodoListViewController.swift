@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     static let editTodoItemIdentifier = "EditTodoItem"
-    static let cellIdentifier = "todoListCellItem"
+    static let cellIdentifier = "TodoItemCell"
     
     @IBOutlet var tableView:UITableView?
 
@@ -33,9 +33,12 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let tableCell = UITableViewCell(style: .Default, reuseIdentifier: TodoListViewController.cellIdentifier)
-        tableCell.textLabel?.text = todoItemService.todoItems[indexPath.row].title
-        return tableCell
+        if let tableCell = tableView.dequeueReusableCellWithIdentifier(TodoListViewController.cellIdentifier) as? TodoItemCell {
+            tableCell.titleLabel?.text = todoItemService.todoItems[indexPath.row].title
+            return tableCell
+        }
+        // make the compiler happy, this line of code should be never reached
+        return TodoItemCell(style: .Default, reuseIdentifier: TodoListViewController.cellIdentifier)
     }
 
 
