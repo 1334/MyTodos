@@ -34,6 +34,10 @@ class TodoItem: NSObject {
         return TodoItem(identifier: self.identifier, title: title, done:self.done)
     }
     
+    func setDone(done: Bool) -> TodoItem {
+        return TodoItem(identifier: self.identifier, title: self.title, done:done)
+    }
+    
 
 }
 

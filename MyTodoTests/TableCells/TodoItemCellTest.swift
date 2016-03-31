@@ -14,7 +14,7 @@ import Hamcrest
 
 class TodoItemCellTest : BaseTestCase {
     
-    
+   
     func getTodoListViewController() -> TodoListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let initialViewController = storyboard.instantiateInitialViewController() as? UINavigationController {
@@ -38,7 +38,7 @@ class TodoItemCellTest : BaseTestCase {
     
     typealias TodoItemCellAssertClosure = (cell: TodoItemCell) -> Void
 
-    func withCell(asserts : TodoItemCellAssertClosure) {
+    func withCell(asserts : TodoItemCellAssertClosure) -> TodoListViewController {
         let todoListViewController = presentTodoListViewController()
         
         let cell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
@@ -47,6 +47,7 @@ class TodoItemCellTest : BaseTestCase {
         } else {
           XCTFail("cell is not a TodoItemCell: \(cell)")
         }
+        return todoListViewController
     }
     
     func testTableCellIsPresent() {
@@ -96,27 +97,94 @@ class TodoItemCellTest : BaseTestCase {
         }
     }
     
-    func testCellDoneButtonShouldHaveNotText() {
+    typealias UIButtonAssertClosure = (button: UIButton) -> Void
+    
+    func withButton(asserts : UIButtonAssertClosure) {
         withCell() { cell in
             if let button = cell.doneButton {
-                
-                let isEmpty = anyOf(
-                    not(present()),
-                    presentAnd(equalTo(""))
-                )
-                
-                assertThat(button.titleForState(.Normal), isEmpty)
-                assertThat(button.titleForState(.Selected), isEmpty)
-                assertThat(button.titleForState(.Highlighted), isEmpty)
-                
-                
+                asserts(button: button)
             } else {
-                XCTFail("button not found")
+                XCTFail("button is empty")
             }
-            assertThat(cell.doneButton, presentAnd(instanceOf(UIButton)))
-            
+        }
+    }
+
+    
+    func testCellDoneButtonShouldHaveNotText() {
+        withButton() { button in
+         
+            let isEmpty = anyOf(
+                not(present()),
+                presentAnd(equalTo(""))
+            )
+         
+            assertThat(button.titleForState(.Normal), isEmpty)
+            assertThat(button.titleForState(.Selected), isEmpty)
+            assertThat(button.titleForState(.Highlighted), isEmpty)
         }
     }
     
+    func testCellDoneButtonTypeShouldBeCustom() {
+        // this is needed, otherwise there is an additional background image when the button is selected
+        withButton() { button in
+            assertThat(button.buttonType, equalTo(.Custom))
+        }
+    }
+    
+    func testCellDoneButtonShouldShowCheckmarkWhenPressed() {
+        withButton() { button in
+            assertThat(button.selected, equalTo(false))
+            button.performAction()
+            assertThat(button.selected, equalTo(true))
+            button.performAction()
+            assertThat(button.selected, equalTo(false))
+        }
+    }
+    
+    func testTodoItemIsSet() {
+        withCell() { cell in
+            let todoItem = TodoItem(identifier: 1, title: "Buy Beer", done: true)
+            cell.todoItem = todoItem
+            assertThat(cell.titleLabel?.text, presentAnd(equalTo("Buy Beer")))
+            assertThat(cell.doneButton?.selected, presentAnd(equalTo(true)))
+        }
+    }
+
+    
+    func testCellDoneButtonPressedAndTodoItemsChanges() {
+        
+        var closureExecuted = false
+        withCell() { cell in
+            cell.todoItemChangeClosure = {
+                old, new in
+                closureExecuted = true
+                
+                assertThat(old.done == false)
+                assertThat(new.done == true)
+            }
+
+            if let button = cell.doneButton {
+                button.performAction()
+            }
+        }
+        
+        assertThat(closureExecuted, equalTo(true))
+    }
+    
+    
+    func testCellItemChangeClosureIsSet() {
+        withCell() { cell in
+            assertThat(cell.todoItemChangeClosure, present())
+        }
+    }
+    
+    func testCellItemChangeClosureExecutionStoredTheTodoItem() {
+        let viewController = withCell() { cell in
+            cell.doneButton?.performAction()
+        }
+        
+        assertThat(viewController.todoItemService.todoItems, hasCount(1))
+        assertThat(viewController.todoItemService.todoItems[0].done, equalTo(true))
+    }
     
 }

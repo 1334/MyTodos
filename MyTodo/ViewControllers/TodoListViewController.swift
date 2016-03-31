@@ -34,7 +34,11 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let tableCell = tableView.dequeueReusableCellWithIdentifier(TodoListViewController.cellIdentifier) as? TodoItemCell {
-            tableCell.titleLabel?.text = todoItemService.todoItems[indexPath.row].title
+            tableCell.todoItem = todoItemService.todoItems[indexPath.row]
+            tableCell.todoItemChangeClosure = {
+                [unowned self] (old, new) in
+                self.todoItemService.saveTodoItem(new)
+            }
             return tableCell
         }
         // make the compiler happy, this line of code should be never reached

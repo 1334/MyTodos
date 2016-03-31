@@ -26,7 +26,7 @@ class TodoItemService: NSObject {
     
     func addTodoItem(item: TodoItem) -> TodoItem {
         TodoItemService.identifier = TodoItemService.identifier + 1
-        let addedTodoItem = TodoItem(identifier:TodoItemService.identifier, title:item.title)
+        let addedTodoItem = TodoItem(identifier:TodoItemService.identifier, title:item.title, done:item.done)
         self.todoItems.append(addedTodoItem)
         return addedTodoItem
     }
