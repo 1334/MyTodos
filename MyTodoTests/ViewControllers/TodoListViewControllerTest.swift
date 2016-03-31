@@ -60,7 +60,7 @@ class TodoListViewControllerTest: BaseTestCase {
         todoListViewController.todoItemService.addTodoItem(TodoItem(title: "2"))
         todoListViewController.todoItemService.addTodoItem(TodoItem(title: "3"))
         
-        for (index, item) in todoListViewController.todoItemService.todoItems().enumerate() {
+        for (index, item) in todoListViewController.todoItemService.todoItems.enumerate() {
             if let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as? TodoItemCell {
                 assertThat(tableCell.titleLabel, present())
 
@@ -216,7 +216,7 @@ class TodoListViewControllerTest: BaseTestCase {
         let todoListViewController = presentTodoListViewController()
         todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy milk"))
         
-        for (index, _) in todoListViewController.todoItemService.todoItems().enumerate() {
+        for (index, _) in todoListViewController.todoItemService.todoItems.enumerate() {
             let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
             assertThat(tableCell, instanceOf(TodoItemCell))
         }
@@ -226,7 +226,7 @@ class TodoListViewControllerTest: BaseTestCase {
         let todoListViewController = presentTodoListViewController()
         todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy Milk"))
 
-        for (index, _) in todoListViewController.todoItemService.todoItems().enumerate() {
+        for (index, _) in todoListViewController.todoItemService.todoItems.enumerate() {
             let editable = todoListViewController.tableView(todoListViewController.tableView!, canEditRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
             assertThat(editable == true)
         }
@@ -241,10 +241,10 @@ class TodoListViewControllerTest: BaseTestCase {
 
         let tableViewStub = UITableViewStub()
         todoListViewController.tableView = tableViewStub
-        assertThat(todoListViewController.todoItemService.todoItems(), hasCount(1))
+        assertThat(todoListViewController.todoItemService.todoItems, hasCount(1))
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         todoListViewController.tableView(todoListViewController.tableView!, commitEditingStyle:.Delete, forRowAtIndexPath:indexPath)
-        assertThat(todoListViewController.todoItemService.todoItems(), hasCount(0))
+        assertThat(todoListViewController.todoItemService.todoItems, hasCount(0))
         
         assertThat(tableViewStub.deleteRowsAtIndexPaths, hasCount(1))
         assertThat(tableViewStub.deleteRowsAtIndexPaths, hasItem(indexPath))

@@ -11,8 +11,8 @@ import Foundation
 class TodoItemService: NSObject {
     
     static let NotFound = -1
-    
-    var todoItemsStore = [TodoItem]()
+
+    private(set) var todoItems = [TodoItem]()
     
     static var identifier = 0
 
@@ -20,14 +20,14 @@ class TodoItemService: NSObject {
     func addTodoItem(item: TodoItem) -> TodoItem {
         TodoItemService.identifier = TodoItemService.identifier + 1
         let addedTodoItem = TodoItem(identifier:TodoItemService.identifier, title:item.title, done:item.done)
-        self.todoItemsStore.append(addedTodoItem)
+        self.todoItems.append(addedTodoItem)
         return addedTodoItem
     }
     
     func saveTodoItem(item: TodoItem) -> TodoItem {
         let index = indexOfTodoItem(item)
         if (index != TodoItemService.NotFound) {
-            todoItemsStore[index] = item
+            todoItems[index] = item
         }
         return item
     }
@@ -35,13 +35,13 @@ class TodoItemService: NSObject {
     func removeItem(item: TodoItem) -> TodoItem? {
         let index = indexOfTodoItem(item)
         if (index != TodoItemService.NotFound) {
-            return todoItemsStore.removeAtIndex(index)
+            return todoItems.removeAtIndex(index)
         }
         return nil
     }
     
     private func indexOfTodoItem(item: TodoItem) -> Int {
-        for (index, element) in todoItemsStore.enumerate() {
+        for (index, element) in todoItems.enumerate() {
             if (element.identifier == item.identifier) {
                 return index
             }
@@ -50,9 +50,6 @@ class TodoItemService: NSObject {
     }
 
 
-    func todoItems() -> [TodoItem] {
-        return todoItemsStore
-    }
     
     
 }
