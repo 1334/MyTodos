@@ -11,9 +11,9 @@ import XCTest
 import Hamcrest
 @testable import MyTodo
 
-class TodoItemServiceTest : XCTestCase {
+class InMemoryTodoItemServiceTest : XCTestCase {
     
-    let todoItemService = TodoItemService()
+    let todoItemService = InMemoryTodoItemService()
 
     override func setUp() {
         todoItemService.addTodoItem(TodoItem(title: "Buy Milk"))

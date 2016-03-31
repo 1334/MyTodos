@@ -14,7 +14,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet var tableView:UITableView?
 
-    var todoItemService = TodoItemService()
+    var todoItemService = InMemoryTodoItemService()
 
 
     override func viewDidLoad() {
@@ -29,12 +29,12 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
 
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoItemService.todoItems().count
+        return todoItemService.todoItems.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let tableCell = tableView.dequeueReusableCellWithIdentifier(TodoListViewController.cellIdentifier) as? TodoItemCell {
-            tableCell.todoItem = todoItemService.todoItems()[indexPath.row]
+            tableCell.todoItem = todoItemService.todoItems[indexPath.row]
             tableCell.todoItemChangeClosure = {
                 [unowned self] (old, new) in
                 self.todoItemService.saveTodoItem(new)
@@ -77,7 +77,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func todoItemAtIndex(index: Int) -> TodoItem? {
-        let todoItems = todoItemService.todoItems()
+        let todoItems = todoItemService.todoItems
         if todoItems.count > index {
             return todoItems[index]
         }

@@ -21,6 +21,11 @@ class TodoItem: NSObject {
         self.title = title
         self.done = done
     }
+    
+    init?(dictionary: [String: AnyObject]) {
+    
+        return nil
+    }
 
     convenience init(identifier: Int, title: String) {
         self.init(identifier:identifier, title:title, done:false)
@@ -38,6 +43,14 @@ class TodoItem: NSObject {
         return TodoItem(identifier: self.identifier, title: self.title, done:done)
     }
     
+    
+    func asDictionary() -> [String: AnyObject] {
+        return [
+            "identifier": self.identifier,
+            "title": self.title,
+            "done": self.done
+        ]
+    }
 
 }
 
