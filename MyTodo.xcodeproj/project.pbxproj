@@ -19,7 +19,6 @@
 		355B28A3ADC0AA032592770C /* ConstraintMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B28B4866B15E4AFB3081A /* ConstraintMatcher.swift */; };
 		355B2A32435BA436E008A98A /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B25B6D3C0A1EDC21ABE34 /* TodoListViewController.swift */; };
 		355B2AB4C59D2B5127370D90 /* TodoItemClosures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B26BB8684278575D21044 /* TodoItemClosures.swift */; };
-		355B2C811972CBFBA4C03C4A /* UITableViewStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B2A9456F9CD9EDEFFADE6 /* UITableViewStub.swift */; };
 		428C9F461C9071740016AE97 /* TestNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428C9F451C9071740016AE97 /* TestNavigationController.swift */; };
 		A74EEB641C806BCC001930C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74EEB631C806BCC001930C6 /* AppDelegate.swift */; };
 		A74EEB6B1C806BCC001930C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A74EEB6A1C806BCC001930C6 /* Assets.xcassets */; };
@@ -39,6 +38,7 @@
 		A7DC25BD1CAD2DC9003A23D8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC25BC1CAD2DC9003A23D8 /* UIImageExtension.swift */; };
 		A7DC25BF1CAD2E14003A23D8 /* ImageMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC25BE1CAD2E14003A23D8 /* ImageMatcher.swift */; };
 		A7DC25C11CAD43E5003A23D8 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC25C01CAD43E5003A23D8 /* UIButtonExtension.swift */; };
+		A7DC25C51CAD61F1003A23D8 /* UITableViewStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC25C41CAD61F1003A23D8 /* UITableViewStub.swift */; };
 		E6A62D5AB74334F6B7FDE972 /* Pods_MyTodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B771897B68DB8B212B61736 /* Pods_MyTodoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,14 +58,13 @@
 		355B21EDAB7799008D5C9F16 /* UIControlTextInputExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlTextInputExtension.swift; sourceTree = "<group>"; };
 		355B2385410BC79B7D869E44 /* TodoListViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewControllerTest.swift; sourceTree = "<group>"; };
 		355B2545ED8B284862527D20 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
-		355B25B6D3C0A1EDC21ABE34 /* TodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
+		355B25B6D3C0A1EDC21ABE34 /* TodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		355B26694AE0804E6BFF19DF /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		355B26BB8684278575D21044 /* TodoItemClosures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemClosures.swift; sourceTree = "<group>"; };
 		355B28AC03FF45B8BEA56799 /* BaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 		355B28B4866B15E4AFB3081A /* ConstraintMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMatcher.swift; sourceTree = "<group>"; };
 		355B295DDD42FD2D6FE019A5 /* AddTodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewController.swift; sourceTree = "<group>"; };
 		355B29A6AE15F4CD92398BF1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		355B2A9456F9CD9EDEFFADE6 /* UITableViewStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewStub.swift; sourceTree = "<group>"; };
 		355B2BB5921DA3BEB332CD84 /* AddTodoItemViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewControllerTest.swift; sourceTree = "<group>"; };
 		428C9F451C9071740016AE97 /* TestNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNavigationController.swift; sourceTree = "<group>"; };
 		580267A776EA2E61D0640560 /* Pods-MyTodoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTodoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTodoTests/Pods-MyTodoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,7 +76,7 @@
 		A74EEB6D1C806BCC001930C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A74EEB6F1C806BCC001930C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyTodo/Info.plist; sourceTree = "<group>"; };
 		A74EEB741C806BCC001930C6 /* MyTodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegateTest.swift; path = ../AppDelegateTest.swift; sourceTree = "<group>"; };
+		A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTest.swift; sourceTree = "<group>"; };
 		A74EEB881C80860D001930C6 /* Hamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hamcrest.framework; path = Carthage/Build/iOS/Hamcrest.framework; sourceTree = "<group>"; };
 		A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
 		A78F01A31CABCE210043469C /* TodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +92,7 @@
 		A7DC25BC1CAD2DC9003A23D8 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		A7DC25BE1CAD2E14003A23D8 /* ImageMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMatcher.swift; sourceTree = "<group>"; };
 		A7DC25C01CAD43E5003A23D8 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		A7DC25C41CAD61F1003A23D8 /* UITableViewStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +186,7 @@
 		355B2F02C17B6C265BF55C31 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
-				A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */,
+				A7DC25C41CAD61F1003A23D8 /* UITableViewStub.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -248,6 +248,8 @@
 		A74EEB771C806BCC001930C6 /* MyTodoTests */ = {
 			isa = PBXGroup;
 			children = (
+				355B28AC03FF45B8BEA56799 /* BaseTestCase.swift */,
+				A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */,
 				A7DC25B51CAD0DCB003A23D8 /* TableCells */,
 				A78F01AA1CABE0700043469C /* Models */,
 				A78F01A71CABDA6D0043469C /* Services */,
@@ -256,8 +258,6 @@
 				355B288DB05A8929D4CE6930 /* Extensions */,
 				355B2A8C57D43D736124FDC3 /* ViewControllers */,
 				355B2F02C17B6C265BF55C31 /* Stubs */,
-				355B28AC03FF45B8BEA56799 /* BaseTestCase.swift */,
-				355B2A9456F9CD9EDEFFADE6 /* UITableViewStub.swift */,
 				355B29A6AE15F4CD92398BF1 /* Info.plist */,
 			);
 			path = MyTodoTests;
@@ -482,6 +482,7 @@
 				355B20B2564001B46A871125 /* UIBarButtonHelperExtension.swift in Sources */,
 				A78F01A61CABCFE60043469C /* EditTodoItemViewControllerTest.swift in Sources */,
 				A78F01AC1CABE0F80043469C /* TodoItemTest.swift in Sources */,
+				A7DC25C51CAD61F1003A23D8 /* UITableViewStub.swift in Sources */,
 				355B24772850C05AAD2DFA45 /* TodoListViewControllerTest.swift in Sources */,
 				A78F01A91CABDA880043469C /* TodoItemServiceTest.swift in Sources */,
 				355B203885C146C0BCA84CFF /* AddTodoItemViewControllerTest.swift in Sources */,
@@ -489,7 +490,6 @@
 				A7DC25BF1CAD2E14003A23D8 /* ImageMatcher.swift in Sources */,
 				355B286795A6C05A8C26A34A /* UIControlTextInputExtension.swift in Sources */,
 				355B27182BAC6E976B05BF64 /* BaseTestCase.swift in Sources */,
-				355B2C811972CBFBA4C03C4A /* UITableViewStub.swift in Sources */,
 				A7DC25BD1CAD2DC9003A23D8 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

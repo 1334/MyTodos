@@ -9,6 +9,7 @@ import UIKit
 class UITableViewStub : UITableView {
 
     var hasReloadData = false
+    var deleteRowsAtIndexPaths = [NSIndexPath]()
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -20,6 +21,10 @@ class UITableViewStub : UITableView {
 
     override func reloadData() {
         hasReloadData = true
+    }
+    
+    override func deleteRowsAtIndexPaths(indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation) {
+        deleteRowsAtIndexPaths = indexPaths
     }
 
 

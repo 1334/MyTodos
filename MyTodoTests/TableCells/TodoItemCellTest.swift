@@ -186,5 +186,6 @@ class TodoItemCellTest : BaseTestCase {
         assertThat(viewController.todoItemService.todoItems, hasCount(1))
         assertThat(viewController.todoItemService.todoItems[0].done, equalTo(true))
     }
-    
+
+
 }

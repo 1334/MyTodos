@@ -39,7 +39,6 @@ class TodoItemService: NSObject {
         return item
     }
     
-/*
     func removeItem(item: TodoItem) -> TodoItem? {
         let index = indexOfTodoItem(item)
         if (index != TodoItemService.NotFound) {
@@ -47,7 +46,6 @@ class TodoItemService: NSObject {
         }
         return nil
     }
-  */
     
     func indexOfTodoItem(item: TodoItem) -> Int {
         for (index, element) in todoItems.enumerate() {

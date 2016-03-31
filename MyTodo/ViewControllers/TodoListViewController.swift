@@ -64,4 +64,13 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.performSegueWithIdentifier(TodoListViewController.editTodoItemIdentifier, sender: todoItem)
     }
 
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let todoItem = todoItemService.todoItems[indexPath.row]
+        todoItemService.removeItem(todoItem)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    }
 }

@@ -42,4 +42,14 @@ class TodoItemServiceTest : XCTestCase {
     }
     
     
+    func testRemoveItem() {
+        let todoItem = TodoItem(title: "Buy milk")
+        let addedTodoItem = todoItemService.addTodoItem(todoItem)
+        assertThat(todoItemService.todoItems, hasCount(5))
+
+        todoItemService.removeItem(addedTodoItem)
+        assertThat(todoItemService.todoItems, hasCount(4))
+        assertThat(todoItemService.todoItems, not(hasItem(addedTodoItem)))
+    }
+    
 }

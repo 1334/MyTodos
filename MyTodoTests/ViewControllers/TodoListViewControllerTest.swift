@@ -217,5 +217,32 @@ class TodoListViewControllerTest: BaseTestCase {
             assertThat(tableCell, instanceOf(TodoItemCell))
         }
     }
+    
+    func testTableCellCanBeEdited() {
+        let todoListViewController = presentTodoListViewController()
+        
+        for (index, _) in todoListViewController.todoItemService.todoItems.enumerate() {
+            let editable = todoListViewController.tableView(todoListViewController.tableView!, canEditRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
+            assertThat(editable == true)
+        }
+        
+        assertThat(todoListViewController.tableView?.allowsSelectionDuringEditing, presentAnd(equalTo(true)))
+        assertThat(todoListViewController.tableView?.allowsMultipleSelectionDuringEditing, presentAnd(equalTo(false)))
+    }
+    
+    func testDeleteTodoItem() {
+        let todoListViewController = presentTodoListViewController()
+        let tableViewStub = UITableViewStub()
+        todoListViewController.tableView = tableViewStub
+        assertThat(todoListViewController.todoItemService.todoItems, hasCount(4))
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        todoListViewController.tableView(todoListViewController.tableView!, commitEditingStyle:.Delete, forRowAtIndexPath:indexPath)
+        assertThat(todoListViewController.todoItemService.todoItems, hasCount(3))
+        
+        assertThat(tableViewStub.deleteRowsAtIndexPaths, hasCount(1))
+        assertThat(tableViewStub.deleteRowsAtIndexPaths, hasItem(indexPath))
+    }
+    
+    
 
 }
