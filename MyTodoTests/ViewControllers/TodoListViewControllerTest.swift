@@ -16,6 +16,7 @@ class TodoListViewControllerTest: BaseTestCase {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let initialViewController = storyboard.instantiateInitialViewController() as? UINavigationController {
             if let todoListViewController = initialViewController.topViewController as? TodoListViewController {
+                todoListViewController.todoItemService = InMemoryTodoItemService()
                 return todoListViewController
             }
         }

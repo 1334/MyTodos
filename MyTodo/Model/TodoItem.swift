@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TodoItem: NSObject {
+class TodoItem: Equatable {
     
     static let newItemIdentifer = -1
     
@@ -22,9 +22,21 @@ class TodoItem: NSObject {
         self.done = done
     }
     
-    init?(dictionary: [String: AnyObject]) {
-    
-        return nil
+    convenience init?(dictionary: [String: AnyObject]) {
+        let identifier = dictionary["identifier"] as? Int
+        if identifier == nil {
+            return nil
+        }
+        let title = dictionary["title"] as? String
+        if title == nil {
+            return nil
+        }
+        let done = dictionary["done"] as? Bool
+        if done == nil {
+            return nil
+        }
+        
+        self.init(identifier: identifier!, title:title!, done:done!)
     }
 
     convenience init(identifier: Int, title: String) {
@@ -54,9 +66,9 @@ class TodoItem: NSObject {
 
 }
 
-
 func ==(lhs: TodoItem, rhs: TodoItem) -> Bool {
     return lhs.identifier == rhs.identifier &&
         lhs.title == rhs.title &&
         lhs.done == rhs.done
 }
+

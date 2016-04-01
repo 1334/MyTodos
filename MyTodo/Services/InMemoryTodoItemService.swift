@@ -49,7 +49,9 @@ class InMemoryTodoItemService: NSObject, TodoItemService {
         return InMemoryTodoItemService.NotFound
     }
 
-
+    /* protected */ func appendItem(item: TodoItem) {
+        todoItems.append(item)
+    }
     
     
 }

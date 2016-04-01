@@ -35,12 +35,48 @@ class UserDefaultsTodoItemServiceTest : XCTestCase {
         assertThat(addedTodoItem, not(equalTo(todoItem)))
         assertThat(addedTodoItem.title, equalTo(todoItem.title))
         assertThat(addedTodoItem.identifier, not(equalTo(TodoItem.newItemIdentifer)))
+        assertThat(userDefaultsArray(), hasCount(1))
         
+        if let dictionary = userDefaultsArray()[0] as? [String:AnyObject] {
+            let item = TodoItem(dictionary: dictionary);
+            assertThat(item, presentAnd(equalTo(addedTodoItem)))
+        } else {
+            XCTFail("loaded data is no dictionary")
+        }
+    }
+    
+    func testSaveTodoItem() {
+        let todoItem = TodoItem(title: "Buy milk")
+        let addedTodoItem = todoItemService.addTodoItem(todoItem)
+        let savedTodoItem = todoItemService.saveTodoItem(addedTodoItem.setDone(true))
         
         assertThat(userDefaultsArray(), hasCount(1))
         
-        let item = 
-        assertThat(userDefaultsArray()[0], equalTo(addedTodoItem.asDictionary()))
+        if let dictionary = userDefaultsArray()[0] as? [String:AnyObject] {
+            let item = TodoItem(dictionary: dictionary);
+            assertThat(item, presentAnd(equalTo(savedTodoItem)))
+        } else {
+            XCTFail("loaded data is no dictionary")
+        }
+    }
+    
+    func testRemovedTodoItem() {
+        let todoItem = TodoItem(title: "Buy milk")
+        let addedTodoItem = todoItemService.addTodoItem(todoItem)
         
+        assertThat(userDefaultsArray(), hasCount(1))
+        todoItemService.removeItem(addedTodoItem)
+        assertThat(userDefaultsArray(), hasCount(0))
+    }
+    
+    func testLoadTodoItemsFromUserDefaults() {
+        let todoItem = TodoItem(title: "Buy milk")
+
+        userDefaults.setObject([todoItem.asDictionary()], forKey: "MyTodos")
+        let itemService = UserDefaultsTodoItemService()
+
+        assertThat(itemService.todoItems, hasCount(1))
+        assertThat(itemService.todoItems, hasItem(todoItem))
+
     }
 }

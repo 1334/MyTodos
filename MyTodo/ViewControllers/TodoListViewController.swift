@@ -14,7 +14,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet var tableView:UITableView?
 
-    var todoItemService = InMemoryTodoItemService()
+    var todoItemService:TodoItemService  = UserDefaultsTodoItemService()
 
 
     override func viewDidLoad() {

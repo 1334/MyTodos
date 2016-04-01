@@ -28,6 +28,7 @@ class TodoItemCellTest : BaseTestCase {
     
     func presentTodoListViewController() -> TodoListViewController {
         let todoListViewController = getTodoListViewController()
+        todoListViewController.todoItemService = InMemoryTodoItemService()
         todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy milk"))
 
         presentViewController(todoListViewController)
