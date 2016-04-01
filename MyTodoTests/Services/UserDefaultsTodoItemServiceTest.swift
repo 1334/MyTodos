@@ -16,8 +16,16 @@ class UserDefaultsTodoItemServiceTest : XCTestCase {
     let todoItemService = UserDefaultsTodoItemService()
     let userDefaults = NSUserDefaults.standardUserDefaults()
 
+    override func setUp() {
+        super.setUp()
+        cleanup()
+    }
     override func tearDown() {
         super.tearDown()
+        cleanup()
+    }
+    
+    func cleanup() {
         userDefaults.removeObjectForKey("MyTodos")
     }
     
