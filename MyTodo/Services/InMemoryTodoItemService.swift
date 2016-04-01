@@ -16,28 +16,31 @@ class InMemoryTodoItemService: NSObject, TodoItemService {
     
     static var identifier = 0
 
-    
-    func addTodoItem(item: TodoItem) -> TodoItem {
+    func todoItems(result: TodoItemListResultClosure) {
+        result(todoItems, nil)
+    }
+
+    func addTodoItem(item: TodoItem, result: TodoItemResultClosure) {
         InMemoryTodoItemService.identifier = InMemoryTodoItemService.identifier + 1
         let addedTodoItem = TodoItem(identifier:InMemoryTodoItemService.identifier, title:item.title, done:item.done)
         self.todoItems.append(addedTodoItem)
-        return addedTodoItem
+        result(addedTodoItem, nil)
     }
     
-    func saveTodoItem(item: TodoItem) -> TodoItem {
+    func saveTodoItem(item: TodoItem, result: TodoItemResultClosure) {
         let index = indexOfTodoItem(item)
         if (index != InMemoryTodoItemService.NotFound) {
             todoItems[index] = item
         }
-        return item
+        result(item, nil)
     }
     
-    func removeItem(item: TodoItem) -> TodoItem? {
+    func removeTodoItem(item: TodoItem, result: TodoItemResultClosure) {
         let index = indexOfTodoItem(item)
         if (index != InMemoryTodoItemService.NotFound) {
-            return todoItems.removeAtIndex(index)
+            result(todoItems.removeAtIndex(index), nil)
         }
-        return nil
+        result(nil, NSError(domain:"MyTodos", code:1, userInfo: nil))
     }
     
     private func indexOfTodoItem(item: TodoItem) -> Int {

@@ -9,9 +9,10 @@
 import Foundation
 
 
+
 protocol TodoItemService {
-    var todoItems: [TodoItem] { get }
-    func addTodoItem(item: TodoItem) -> TodoItem
-    func saveTodoItem(item: TodoItem) -> TodoItem
-    func removeItem(item: TodoItem) -> TodoItem?
+    func todoItems(result: TodoItemListResultClosure)
+    func addTodoItem(item: TodoItem, result: TodoItemResultClosure)
+    func saveTodoItem(item: TodoItem, result: TodoItemResultClosure)
+    func removeTodoItem(item: TodoItem, result: TodoItemResultClosure)
 }

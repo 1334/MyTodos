@@ -21,8 +21,7 @@ class InMemoryTodoItemServiceTest : XCTestCase {
         todoItemService.addTodoItem(TodoItem(title: "Drink Beer"))
         todoItemService.addTodoItem(TodoItem(title: "World Domination"))
     }
-    
-    
+
     func testAddTodoItem() {
         let todoItem = TodoItem(title: "Buy milk")
         let addedTodoItem = todoItemService.addTodoItem(todoItem)
@@ -30,9 +29,11 @@ class InMemoryTodoItemServiceTest : XCTestCase {
         assertThat(addedTodoItem, not(equalTo(todoItem)))
         assertThat(addedTodoItem.title, equalTo(todoItem.title))
         assertThat(addedTodoItem.identifier, not(equalTo(TodoItem.newItemIdentifer)))
-        
-        assertThat(todoItemService.todoItems, hasItem(addedTodoItem))
-        assertThat(todoItemService.todoItems, hasCount(5))
+
+        todoItemService.withTodoItems() { todoItems in
+            assertThat(todoItems, hasItem(addedTodoItem))
+            assertThat(todoItems, hasCount(5))
+        }
     }
     
     func testTodoItemHasChanged() {
@@ -43,9 +44,12 @@ class InMemoryTodoItemServiceTest : XCTestCase {
         let editedTodoItem = addedTodoItem.setTitle("Buy some milk")
         todoItemService.saveTodoItem(editedTodoItem)
         
-        assertThat(todoItemService.todoItems, hasCount(5))
-        assertThat(todoItemService.todoItems, hasItem(editedTodoItem))
-        assertThat(todoItemService.todoItems, not(hasItem(addedTodoItem)))
+        todoItemService.withTodoItems() {
+            todoItems in
+            assertThat(todoItems, hasCount(5))
+            assertThat(todoItems, hasItem(editedTodoItem))
+            assertThat(todoItems, not(hasItem(addedTodoItem)))
+        }
     }
     
     
@@ -54,9 +58,13 @@ class InMemoryTodoItemServiceTest : XCTestCase {
         let addedTodoItem = todoItemService.addTodoItem(todoItem)
         assertThat(todoItemService.todoItems, hasCount(5))
 
-        todoItemService.removeItem(addedTodoItem)
-        assertThat(todoItemService.todoItems, hasCount(4))
-        assertThat(todoItemService.todoItems, not(hasItem(addedTodoItem)))
+        todoItemService.removeTodoItem(addedTodoItem)
+
+        todoItemService.withTodoItems() {
+            todoItems in
+            assertThat(todoItems, hasCount(4))
+            assertThat(todoItems, not(hasItem(addedTodoItem)))
+        }
     }
     
 }

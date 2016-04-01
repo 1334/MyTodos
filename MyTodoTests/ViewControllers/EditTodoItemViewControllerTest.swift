@@ -143,11 +143,10 @@ class EditTodoItemViewControllerTest : BaseTestCase {
         
         
         var closureExecuted = false
-        viewController.todoItemClosure = { todoItem in
+        viewController.todoItemClosure = { todoItem, resultClosure in
             closureExecuted = true
             assertThat(todoItem.identifier, equalTo(1))
             assertThat(todoItem.title, equalTo("Buy milk"))
-            return TodoItem(title: "")
         }
         
         let addButton = viewController.navigationItem.rightBarButtonItem

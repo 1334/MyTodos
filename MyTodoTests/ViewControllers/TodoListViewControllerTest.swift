@@ -47,35 +47,44 @@ class TodoListViewControllerTest: BaseTestCase {
     
     
     func testTableViewHasMultiplesRows() {
-        let todoListViewController = presentTodoListViewController()
-        
+
+        var todoItems = [TodoItem]()
+
         for arrayLength in 0...3 {
+            let todoListViewController = presentTodoListViewController(todoItems)
             assertThat(todoListViewController.tableView(todoListViewController.tableView!, numberOfRowsInSection: 0), equalTo(arrayLength))
-            todoListViewController.todoItemService.addTodoItem(TodoItem(title: "foobar"))
+            todoItems.append(TodoItem(title: "foobar"))
         }
     }
     
     func testTableViewShowsAllTodoItems() {
-        let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "1"))
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "2"))
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "3"))
-        
-        for (index, item) in todoListViewController.todoItemService.todoItems.enumerate() {
-            if let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as? TodoItemCell {
-                assertThat(tableCell.titleLabel, present())
+        let todoItems = [
+               TodoItem(title: "1"),
+               TodoItem(title: "2"),
+               TodoItem(title: "3")
+        ]
+        let todoListViewController = presentTodoListViewController(todoItems)
 
-                assertThat(tableCell.titleLabel?.text, presentAnd(equalTo(item.title)))
-            } else {
-                XCTFail("cell empty")
+        todoListViewController.todoItemService.withTodoItems() {
+            todoItems in
+            for (index, item) in todoItems.enumerate() {
+                if let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as? TodoItemCell {
+                    assertThat(tableCell.titleLabel, present())
+
+                    assertThat(tableCell.titleLabel?.text, presentAnd(equalTo(item.title)))
+                } else {
+                    XCTFail("cell empty")
+                }
             }
         }
 
     }
     
-    func presentTodoListViewController() -> TodoListViewController {
+    func presentTodoListViewController(todoItems:[TodoItem] = []) -> TodoListViewController {
         let todoListViewController = getTodoListViewController()
-
+        for item in todoItems {
+            todoListViewController.todoItemService.addTodoItem(item)
+        }
         let testNavigationController = TestNavigationController(rootViewController: todoListViewController)
         presentViewController(testNavigationController)
         return todoListViewController
@@ -172,8 +181,8 @@ class TodoListViewControllerTest: BaseTestCase {
 
     
     func testWhenSelectingTodoItem_EditViewIsShown() {
-        let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy Milk"))
+        let todoItems = [TodoItem(title: "Buy Milk")]
+        let todoListViewController = presentTodoListViewController(todoItems)
 
         
         if let tableView = todoListViewController.tableView {
@@ -200,8 +209,8 @@ class TodoListViewControllerTest: BaseTestCase {
     
     
     func testWhenSelectingTodoItem_EditViewIsShown_AndClosureIsSet() {
-        let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy Milk"))
+        let todoItems = [TodoItem(title: "Buy Milk")]
+        let todoListViewController = presentTodoListViewController(todoItems)
 
         if let tableView = todoListViewController.tableView {
             todoListViewController.tableView(tableView, didSelectRowAtIndexPath:NSIndexPath(forRow: 0, inSection: 0))
@@ -214,22 +223,28 @@ class TodoListViewControllerTest: BaseTestCase {
     }
     
     func testTableCellIsProperClass() {
-        let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy milk"))
-        
-        for (index, _) in todoListViewController.todoItemService.todoItems.enumerate() {
-            let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
-            assertThat(tableCell, instanceOf(TodoItemCell))
+        let todoItems = [TodoItem(title: "Buy Milk")]
+        let todoListViewController = presentTodoListViewController(todoItems)
+
+        todoListViewController.todoItemService.withTodoItems() {
+            todoItems in
+            for (index, _) in todoItems.enumerate() {
+                let tableCell = todoListViewController.tableView(todoListViewController.tableView!, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
+                assertThat(tableCell, instanceOf(TodoItemCell))
+            }
         }
     }
     
     func testTableCellCanBeEdited() {
-        let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy Milk"))
+        let todoItems = [TodoItem(title: "Buy Milk")]
+        let todoListViewController = presentTodoListViewController(todoItems)
 
-        for (index, _) in todoListViewController.todoItemService.todoItems.enumerate() {
-            let editable = todoListViewController.tableView(todoListViewController.tableView!, canEditRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
-            assertThat(editable == true)
+        todoListViewController.todoItemService.withTodoItems() {
+            todoItems in
+            for (index, _) in todoItems.enumerate() {
+                let editable = todoListViewController.tableView(todoListViewController.tableView!, canEditRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0))
+                assertThat(editable == true)
+            }
         }
         
         assertThat(todoListViewController.tableView?.allowsSelectionDuringEditing, presentAnd(equalTo(true)))
@@ -237,15 +252,23 @@ class TodoListViewControllerTest: BaseTestCase {
     }
     
     func testDeleteTodoItem() {
-        let todoListViewController = presentTodoListViewController()
-        todoListViewController.todoItemService.addTodoItem(TodoItem(title: "Buy Milk"))
+        let todoItems = [TodoItem(title: "Buy Milk")]
+        let todoListViewController = presentTodoListViewController(todoItems)
 
         let tableViewStub = UITableViewStub()
         todoListViewController.tableView = tableViewStub
-        assertThat(todoListViewController.todoItemService.todoItems, hasCount(1))
+
+        todoListViewController.todoItemService.withTodoItems() {
+            todoItems in
+            assertThat(todoItems, hasCount(1))
+        }
+
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         todoListViewController.tableView(todoListViewController.tableView!, commitEditingStyle:.Delete, forRowAtIndexPath:indexPath)
-        assertThat(todoListViewController.todoItemService.todoItems, hasCount(0))
+        todoListViewController.todoItemService.withTodoItems() {
+            todoItems in
+            assertThat(todoItems, hasCount(0))
+        }
         
         assertThat(tableViewStub.deleteRowsAtIndexPaths, hasCount(1))
         assertThat(tableViewStub.deleteRowsAtIndexPaths, hasItem(indexPath))

@@ -182,9 +182,13 @@ class TodoItemCellTest : BaseTestCase {
         let viewController = withCell() { cell in
             cell.doneButton?.performAction()
         }
-        
-        assertThat(viewController.todoItemService.todoItems, hasCount(1))
-        assertThat(viewController.todoItemService.todoItems[0].done, equalTo(true))
+
+        viewController.todoItemService.withTodoItems() {
+            todoItems in
+            assertThat(todoItems, hasCount(1))
+            assertThat(todoItems[0].done, equalTo(true))
+        }
+
     }
 
 

@@ -16,7 +16,9 @@ class TodoItemViewController: UIViewController {
     
     @IBAction func rightBarButtonPressed() {
         if let todoItem = createTodoItem() {
-            todoItemClosure?(todoItem)
+            todoItemClosure?(todoItem) {
+                result, error in // TODO: pop the view controller here!
+            }
         }
         self.navigationController?.popViewControllerAnimated(true)
     }

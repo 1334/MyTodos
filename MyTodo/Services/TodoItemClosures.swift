@@ -8,6 +8,10 @@
 
 import Foundation
 
-typealias TodoItemClosure  = (TodoItem) -> TodoItem
+
+typealias TodoItemListResultClosure = ([TodoItem]?, NSError?) -> Void
+typealias TodoItemResultClosure  = (TodoItem?, NSError?) -> Void
+
+typealias TodoItemClosure  = (TodoItem, TodoItemResultClosure) -> Void
 typealias AddTodoItemClosure = TodoItemClosure
 typealias EditTodoItemClosure = TodoItemClosure

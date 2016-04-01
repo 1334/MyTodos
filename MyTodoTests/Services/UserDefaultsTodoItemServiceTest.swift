@@ -65,7 +65,7 @@ class UserDefaultsTodoItemServiceTest : XCTestCase {
         let addedTodoItem = todoItemService.addTodoItem(todoItem)
         
         assertThat(userDefaultsArray(), hasCount(1))
-        todoItemService.removeItem(addedTodoItem)
+        todoItemService.removeTodoItem(addedTodoItem)
         assertThat(userDefaultsArray(), hasCount(0))
     }
     

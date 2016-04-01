@@ -26,23 +26,25 @@ class UserDefaultsTodoItemService : InMemoryTodoItemService {
             }
         }
     }
-    
-    override func addTodoItem(item: TodoItem) -> TodoItem {
-        let result = super.addTodoItem(item)
-        save()
-        return result
+
+    func callAndSaveItem(item:TodoItem, result:TodoItemResultClosure, toCall: TodoItemClosure) {
+        toCall(item) {
+            [unowned self] item, error in
+            self.save()
+            result(item, error)
+        }
     }
-    override func saveTodoItem(item: TodoItem) -> TodoItem {
-        let result = super.saveTodoItem(item)
-        save()
-        return result
+
+    override func addTodoItem(item: TodoItem, result: TodoItemResultClosure) {
+        callAndSaveItem(item, result:result, toCall:super.addTodoItem)
+    }
+
+    override func saveTodoItem(item: TodoItem, result: TodoItemResultClosure) {
+        callAndSaveItem(item, result:result, toCall:super.saveTodoItem)
     }
     
-    
-    override func removeItem(item: TodoItem) -> TodoItem? {
-        let result = super.removeItem(item)
-        save()
-        return result
+    override func removeTodoItem(item: TodoItem, result: TodoItemResultClosure) {
+        callAndSaveItem(item, result:result, toCall:super.removeTodoItem)
     }
     
     func save() {
