@@ -55,6 +55,10 @@ class InMemoryTodoItemService: NSObject, TodoItemService {
     /* protected */ func appendItem(item: TodoItem) {
         todoItems.append(item)
     }
+
+    /* protected */ func removeAll() {
+        todoItems.removeAll()
+    }
     
     
 }

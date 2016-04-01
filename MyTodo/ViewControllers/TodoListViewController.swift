@@ -26,7 +26,6 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         loadItems()
-        tableView?.reloadData()
     }
 
     func loadItems() {
@@ -34,6 +33,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
             [unowned self] result, error in
             if let todoItems = result {
                 self.todoItems = todoItems
+                self.tableView?.reloadData()
             }
 
         }

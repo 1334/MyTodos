@@ -12,11 +12,14 @@ import Hamcrest
 
 class TodoListViewControllerTest: BaseTestCase {
 
+    let todoListServiceStub = TodoListServiceStub()
+
+
     func getTodoListViewController() -> TodoListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let initialViewController = storyboard.instantiateInitialViewController() as? UINavigationController {
             if let todoListViewController = initialViewController.topViewController as? TodoListViewController {
-                todoListViewController.todoItemService = InMemoryTodoItemService()
+                todoListViewController.todoItemService = todoListServiceStub
                 return todoListViewController
             }
         }
@@ -51,6 +54,7 @@ class TodoListViewControllerTest: BaseTestCase {
         var todoItems = [TodoItem]()
 
         for arrayLength in 0...3 {
+            todoListServiceStub.reset()
             let todoListViewController = presentTodoListViewController(todoItems)
             assertThat(todoListViewController.tableView(todoListViewController.tableView!, numberOfRowsInSection: 0), equalTo(arrayLength))
             todoItems.append(TodoItem(title: "foobar"))
@@ -169,16 +173,16 @@ class TodoListViewControllerTest: BaseTestCase {
      }
 
     func testTableGetsReloadedOnViewWillAppear() {
+        todoListServiceStub.automaticCompletion = false
         let todoListViewController = presentTodoListViewController()
 
         let tableView = UITableViewStub()
         todoListViewController.tableView = tableView
 
-        todoListViewController.viewWillAppear(false)
+        todoListServiceStub.callLastCompletion()
 
         assertThat(tableView.hasReloadData == true)
     }
-
     
     func testWhenSelectingTodoItem_EditViewIsShown() {
         let todoItems = [TodoItem(title: "Buy Milk")]
