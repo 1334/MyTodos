@@ -17,10 +17,15 @@ class TodoItemViewController: UIViewController {
     @IBAction func rightBarButtonPressed() {
         if let todoItem = createTodoItem() {
             todoItemClosure?(todoItem) {
-                result, error in // TODO: pop the view controller here!
+                [unowned self] result, error in // TODO: pop the view controller here!
+                if result != nil {
+                    self.navigationController?.popViewControllerAnimated(true)
+                } else {
+                    // TODO: Error handling
+                }
             }
         }
-        self.navigationController?.popViewControllerAnimated(true)
+
     }
     
     func createTodoItem() -> TodoItem? {

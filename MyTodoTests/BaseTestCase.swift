@@ -40,13 +40,11 @@ class BaseTestCase: XCTestCase {
 	private func performPresentViewController(let viewController: UIViewController) {
 		assertThat(viewController.view, instanceOf(UIView))
 
-		/*
-		if ([viewController isKindOfClass:[TestNavigationController class]]) {
-		TestNavigationController *navigationController = (TestNavigationController*)viewController;
-		navigationController.presentNotUsingWindow = YES;
-		assertThat([navigationController.visibleViewController view], is(notNilValue()));
+
+		if let testNavigationController = viewController as? TestNavigationController {
+			testNavigationController.presentNotUsingWindow = true
+			assertThat(testNavigationController.visibleViewController?.view, present()) // make sure that the view of the visible view controller is loaded
 		}
-		*/
 
 		viewController.viewWillAppear(false)
 		var bounds = UIScreen.mainScreen().bounds

@@ -10,8 +10,10 @@ import Foundation
 class TodoListServiceStub : InMemoryTodoItemService {
 
     var automaticCompletion = true
-    var lastCompletionClosure: TodoItemListResultClosure?
-    var lastCompletionItems: [TodoItem]?
+    var lastListCompletionClosure: TodoItemListResultClosure?
+    var lastItemCompletionClosure: TodoItemResultClosure?
+    var lastCompletionItemList: [TodoItem]?
+    var lastCompletionItem: TodoItem?
     var lastCompletionError: NSError?
 
     func reset() {
@@ -20,17 +22,27 @@ class TodoListServiceStub : InMemoryTodoItemService {
     }
 
     func callLastCompletion() {
-        if let closure = lastCompletionClosure {
-            closure(lastCompletionItems, lastCompletionError)
+
+        if lastListCompletionClosure != nil {
+            if let closure = lastListCompletionClosure {
+                closure(lastCompletionItemList, lastCompletionError)
+            }
+        }
+
+        if lastItemCompletionClosure != nil {
+            if let closure = lastItemCompletionClosure {
+                closure(lastCompletionItem, lastCompletionError)
+            }
         }
     }
 
-/*
+
     func callAndSaveItem(item:TodoItem, result:TodoItemResultClosure, toCall: TodoItemClosure) {
-        lastCompletionClosure = result
+        lastItemCompletionClosure = result
         toCall(item) {
             [unowned self] item, error in
             self.lastCompletionItem = item
+            self.lastListCompletionClosure = nil
             self.lastCompletionError = error
             if self.automaticCompletion {
                 self.callLastCompletion()
@@ -49,13 +61,13 @@ class TodoListServiceStub : InMemoryTodoItemService {
     override func removeTodoItem(item: TodoItem, result: TodoItemResultClosure) {
         callAndSaveItem(item, result:result, toCall:super.removeTodoItem)
     }
-    */
 
     override func todoItems(result: TodoItemListResultClosure) {
-        lastCompletionClosure = result
+        lastListCompletionClosure = result
         super.todoItems() {
             [unowned self] items, error in
-            self.lastCompletionItems = items
+            self.lastCompletionItemList = items
+            self.lastCompletionItem = nil
             self.lastCompletionError = error
 
             if self.automaticCompletion {

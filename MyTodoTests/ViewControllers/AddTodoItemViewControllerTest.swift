@@ -11,17 +11,20 @@ import Hamcrest
 
 class AddTodoItemViewControllerTest : BaseTestCase {
 
+    let todoListServiceStub = TodoListServiceStub()
+
     func getAddTodoItemViewController() -> AddTodoItemViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let addListViewController = storyboard.instantiateViewControllerWithIdentifier("AddTodoItemViewController") as? AddTodoItemViewController {
-            return addListViewController
+        if let viewController = storyboard.instantiateViewControllerWithIdentifier("AddTodoItemViewController") as? AddTodoItemViewController {
+            viewController.todoItemClosure = todoListServiceStub.addTodoItem
+            return viewController
         }
 
         XCTFail("Could not load AddTodoItemViewController")
         return AddTodoItemViewController()
     }
 
-    func presentAddTotoItemViewController() -> AddTodoItemViewController {
+    func presentAddTodoItemViewController() -> AddTodoItemViewController {
         let addTodoItemViewController = getAddTodoItemViewController()
         let testNavigationController = TestNavigationController(rootViewController: addTodoItemViewController)
         presentViewController(testNavigationController)
@@ -31,19 +34,19 @@ class AddTodoItemViewControllerTest : BaseTestCase {
 
 
     func testHasCorrectTitle() {
-        let todoListViewController = presentAddTotoItemViewController()
+        let todoListViewController = presentAddTodoItemViewController()
 
         assertThat(todoListViewController.navigationItem.title, presentAnd(equalTo("Add Todo")))
     }
 
 
     func testHasTextField() {
-        let todoListViewController = presentAddTotoItemViewController()
+        let todoListViewController = presentAddTodoItemViewController()
         assertThat(todoListViewController.titleField, presentAnd(instanceOf(UITextField)))
     }
 
     func withTitleField(asserts : (titleField: UITextField) -> Void) {
-        let todoListViewController = presentAddTotoItemViewController()
+        let todoListViewController = presentAddTodoItemViewController()
         if let titleField = todoListViewController.titleField {
             asserts(titleField: titleField)
         }
@@ -57,7 +60,7 @@ class AddTodoItemViewControllerTest : BaseTestCase {
 
 
     func testTextFieldHasLayout() {
-        let todoListViewController = presentAddTotoItemViewController()
+        let todoListViewController = presentAddTodoItemViewController()
         if let titleField = todoListViewController.titleField {
             assertThat(titleField, isPinned(.Leading, gap:20))
             assertThat(titleField, isPinned(.Trailing, gap:20))
@@ -86,7 +89,7 @@ class AddTodoItemViewControllerTest : BaseTestCase {
 
 
     func testHasDoneButton() {
-        let addTodoItemViewController = presentAddTotoItemViewController()
+        let addTodoItemViewController = presentAddTodoItemViewController()
 
         let rightItem = addTodoItemViewController.navigationItem.rightBarButtonItem
         assertThat(rightItem, present())
@@ -95,9 +98,7 @@ class AddTodoItemViewControllerTest : BaseTestCase {
     }
 
     func testEnterTextEnabledDoneButton() {
-
-        let addTodoItemViewController = presentAddTotoItemViewController()
-
+        let addTodoItemViewController = presentAddTodoItemViewController()
         if let titleField = addTodoItemViewController.titleField {
             titleField.type("T")
 
@@ -109,36 +110,42 @@ class AddTodoItemViewControllerTest : BaseTestCase {
         } else {
             XCTFail("titleField is empty")
         }
+    }
 
+    func pressDoneButton(viewController: AddTodoItemViewController) {
+        let addButton = viewController.navigationItem.rightBarButtonItem
+        assertThat(addButton, present())
+        assertThat(addButton?.action, present())
+        addButton?.performAction()
     }
 
     func testWhenPressingDoneButton_AddView_IsDismissed() {
         let addTodoItemViewController = getAddTodoItemViewController()
+        todoListServiceStub.automaticCompletion = false
+
         let rootViewController = UIViewController()
         let testNavigationController = TestNavigationController(rootViewController: rootViewController)
 
         presentViewController(testNavigationController)
         testNavigationController.pushViewController(addTodoItemViewController, animated: false)
 
-        let addButton = addTodoItemViewController.navigationItem.rightBarButtonItem
-        assertThat(addButton, present())
-        assertThat(addButton?.action, present())
+        addTodoItemViewController.titleField?.type("T")
+        pressDoneButton(addTodoItemViewController)
 
-        addButton?.performAction()
-
+        assertThat(testNavigationController.topViewController, presentAnd(equalTo(addTodoItemViewController)))
+        todoListServiceStub.callLastCompletion()
         assertThat(testNavigationController.topViewController, presentAnd(equalTo(rootViewController)))
     }
 
     func testWhenPressingDoneButton_TodoItem_isAdded() {
-        let addTodoItemViewController = presentAddTotoItemViewController()
+        let addTodoItemViewController = presentAddTodoItemViewController()
 
         var closureExecuted = false
         addTodoItemViewController.addTodoItem = { todoItem, result in
             closureExecuted = true
         }
 
-        let addButton = addTodoItemViewController.navigationItem.rightBarButtonItem
-        addButton?.performAction()
+        pressDoneButton(addTodoItemViewController)
 
         assertThat(closureExecuted == true)
     }

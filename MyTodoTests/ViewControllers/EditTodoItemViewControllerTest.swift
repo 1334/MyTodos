@@ -15,10 +15,13 @@ import Hamcrest
 
 class EditTodoItemViewControllerTest : BaseTestCase {
 
+    let todoListServiceStub = TodoListServiceStub()
+
     func getEditTodoItemViewController() -> EditTodoItemViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let addListViewController = storyboard.instantiateViewControllerWithIdentifier("EditTodoItemViewController") as? EditTodoItemViewController {
-            return addListViewController
+        if let viewController = storyboard.instantiateViewControllerWithIdentifier("EditTodoItemViewController") as? EditTodoItemViewController {
+            viewController.todoItemClosure = todoListServiceStub.saveTodoItem
+            return viewController
         }
         
         XCTFail("Could not load EditTodoItemViewController")
@@ -129,7 +132,8 @@ class EditTodoItemViewControllerTest : BaseTestCase {
         let saveButton = viewController.navigationItem.rightBarButtonItem
         assertThat(saveButton, present())
         assertThat(saveButton?.action, present())
-        
+
+        viewController.titleField?.type("T")
         saveButton?.performAction()
         
         assertThat(testNavigationController.topViewController, presentAnd(equalTo(rootViewController)))
