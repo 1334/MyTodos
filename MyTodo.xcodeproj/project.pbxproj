@@ -24,10 +24,10 @@
 		355B2FAC3F58685DE3C19FFB /* ErrorTodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B293655BA1108CF079EE1 /* ErrorTodoItem.swift */; };
 		428C9F461C9071740016AE97 /* TestNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428C9F451C9071740016AE97 /* TestNavigationController.swift */; };
 		A74EEB641C806BCC001930C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74EEB631C806BCC001930C6 /* AppDelegate.swift */; };
-		A74EEB6B1C806BCC001930C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A74EEB6A1C806BCC001930C6 /* Assets.xcassets */; };
 		A74EEB6E1C806BCC001930C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A74EEB6C1C806BCC001930C6 /* LaunchScreen.storyboard */; };
 		A74EEB841C806CD7001930C6 /* AppDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */; };
 		A74EEB891C80860D001930C6 /* Hamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74EEB881C80860D001930C6 /* Hamcrest.framework */; };
+		A74F64131CB2917500C8F304 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A74F64121CB2917500C8F304 /* Media.xcassets */; };
 		A78F01A21CABBB510043469C /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */; };
 		A78F01A41CABCE210043469C /* TodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A31CABCE210043469C /* TodoItemViewController.swift */; };
 		A78F01A61CABCFE60043469C /* EditTodoItemViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F01A51CABCFE60043469C /* EditTodoItemViewControllerTest.swift */; };
@@ -81,12 +81,12 @@
 		9C5E87B9A0F35C23D9723769 /* Pods-MyTodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTodoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTodoTests/Pods-MyTodoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A74EEB601C806BCC001930C6 /* MyTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74EEB631C806BCC001930C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyTodo/AppDelegate.swift; sourceTree = "<group>"; };
-		A74EEB6A1C806BCC001930C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MyTodo/Assets.xcassets; sourceTree = "<group>"; };
 		A74EEB6D1C806BCC001930C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A74EEB6F1C806BCC001930C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyTodo/Info.plist; sourceTree = "<group>"; };
 		A74EEB741C806BCC001930C6 /* MyTodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74EEB831C806CD7001930C6 /* AppDelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTest.swift; sourceTree = "<group>"; };
 		A74EEB881C80860D001930C6 /* Hamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hamcrest.framework; path = Carthage/Build/iOS/Hamcrest.framework; sourceTree = "<group>"; };
+		A74F64121CB2917500C8F304 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A78F01A11CABBB510043469C /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
 		A78F01A31CABCE210043469C /* TodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemViewController.swift; sourceTree = "<group>"; };
 		A78F01A51CABCFE60043469C /* EditTodoItemViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewControllerTest.swift; sourceTree = "<group>"; };
@@ -230,7 +230,6 @@
 				A74EEB871C8085CA001930C6 /* Frameworks */,
 				A74EEB621C806BCC001930C6 /* MyTodo */,
 				A74EEB631C806BCC001930C6 /* AppDelegate.swift */,
-				A74EEB6A1C806BCC001930C6 /* Assets.xcassets */,
 				A74EEB6C1C806BCC001930C6 /* LaunchScreen.storyboard */,
 				A74EEB6F1C806BCC001930C6 /* Info.plist */,
 				A74EEB771C806BCC001930C6 /* MyTodoTests */,
@@ -251,6 +250,7 @@
 		A74EEB621C806BCC001930C6 /* MyTodo */ = {
 			isa = PBXGroup;
 			children = (
+				A74F640F1CB290F200C8F304 /* Resources */,
 				A7DC25B21CAD097F003A23D8 /* TableCells */,
 				355B2CB8EF18014D5DAD7181 /* ViewControllers */,
 				355B2D6BE7142242B57BDDE4 /* Model */,
@@ -286,6 +286,14 @@
 				8B771897B68DB8B212B61736 /* Pods_MyTodoTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A74F640F1CB290F200C8F304 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A74F64121CB2917500C8F304 /* Media.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A78F01A71CABDA6D0043469C /* Services */ = {
@@ -407,7 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A74EEB6E1C806BCC001930C6 /* LaunchScreen.storyboard in Resources */,
-				A74EEB6B1C806BCC001930C6 /* Assets.xcassets in Resources */,
+				A74F64131CB2917500C8F304 /* Media.xcassets in Resources */,
 				A7B440BA1CAAB77E00CE4D5E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
